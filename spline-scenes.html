@@ -1,0 +1,89 @@
+<!-- Spline 3D Integration Placeholder -->
+<!-- 
+    This file contains instructions for creating Spline.design scenes.
+    When you have a Spline account, replace the URLs below with your scene URLs.
+-->
+
+<!-- Scene 1: Hero Rain Atmosphere -->
+<!-- 
+    Scene Concept: Rain-soaked Baltimore street at night
+    Recommended Spline Objects:
+    - Plane for wet pavement (high specular material)
+    - Volumetric fog/fog layer
+    - Animated rain particles
+    - Street lamp with area light
+    - Distant building silhouettes
+    
+    Settings:
+    - Auto-rotate: off
+    - Camera: Fixed with subtle breathing motion
+    - Export: Public URL for iframe embed
+-->
+
+﻿<script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.54/build/spline-viewer.js"></script>
+﻿<spline-viewer url="https://prod.spline.design/YOUR-HERO-SCENE-ID/scene.splinecode"></spline-viewer>
+
+<!-- Scene 2: 3D Book Showcase -->
+<!-- 
+    Scene Concept: Interactive 3D book covers floating in dramatic lighting
+    Recommended Spline Objects:
+    - Two Box geometries (book 1 & book 2)
+    - Custom textures applied to faces
+    - Orbit controls with limits
+    - Dramatic rim lighting (blue + warm contrast)
+    - Floating dust particles (small spheres)
+    
+    Interactions:
+    - Click & drag to rotate
+    - Scroll to zoom
+    - Hover to highlight
+-->
+
+﻿<spline-viewer url="https://prod.spline.design/YOUR-BOOK-SCENE-ID/scene.splinecode"></spline-viewer>
+
+<!-- Scene 3: Detective's Desk -->
+<!-- 
+    Scene Concept: Evidence board with polaroid photos
+    Recommended Spline Objects:
+    - Desk surface (textured plane)
+    - Scattered polaroid meshes
+    - String connectors (tube geometry)
+    - Cigarette smoke (animated spheres)
+    - Desk lamp with spotlight
+    - Typewriter model
+    
+    Interactions:
+    - Click polaroids to focus
+    - Smooth camera transitions
+-->
+
+﻿<spline-viewer url="https://prod.spline.design/YOUR-DESK-SCENE-ID/scene.splinecode"></spline-viewer>
+
+<!-- CSS Fallback for Spline Loading States -->
+<style>
+    spline-viewer {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+        background: linear-gradient(135deg, #0a0a0f 0%, #1a1025 100%);
+    }
+    
+    /* Loading state */
+    spline-viewer::before {
+        content: 'Loading immersive experience...';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Cinzel Decorative', serif;
+        color: #c9a227;
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+    }
+    
+    /* Error state fallback */
+    spline-viewer:empty::before {
+        content: 'Immersive scene unavailable. Please refresh.';
+        color: #8b0000;
+    }
+</style>

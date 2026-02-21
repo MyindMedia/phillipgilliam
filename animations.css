@@ -1,0 +1,369 @@
+/* Advanced Noir Animations for Phillip Gilliam Website */
+
+/* Typewriter Effect for Titles */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--cream);
+    white-space: nowrap;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--cream); }
+}
+
+/* Glitch Effect for Horror Moments */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 var(--blood-red);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 var(--police-blue);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(20px, 9999px, 80px, 0); }
+    20% { clip: rect(60px, 9999px, 120px, 0); }
+    40% { clip: rect(10px, 9999px, 100px, 0); }
+    60% { clip: rect(80px, 9999px, 140px, 0); }
+    80% { clip: rect(30px, 9999px, 90px, 0); }
+    100% { clip: rect(50px, 9999px, 110px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(80px, 9999px, 140px, 0); }
+    20% { clip: rect(20px, 9999px, 60px, 0); }
+    40% { clip: rect(100px, 9999px, 160px, 0); }
+    60% { clip: rect(40px, 9999px, 100px, 0); }
+    80% { clip: rect(120px, 9999px, 180px, 0); }
+    100% { clip: rect(10px, 9999px, 70px, 0); }
+}
+
+/* Venetian Blind Shadows */
+.venetian-shadows {
+    position: relative;
+}
+
+.venetian-shadows::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent,
+        transparent 20px,
+        rgba(0,0,0,0.3) 20px,
+        rgba(0,0,0,0.3) 25px,
+        transparent 25px,
+        transparent 45px
+    );
+    pointer-events: none;
+}
+
+/* Cigarette Smoke */
+.cigarette-smoke {
+    position: relative;
+}
+
+.cigarette-smoke::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 200px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(200,200,200,0.1) 0%,
+        transparent 70%
+    );
+    filter: blur(20px);
+    animation: smoke-rise 4s ease-in-out infinite;
+}
+
+/* Neon Flicker */
+.neon-flicker {
+    animation: neon-flicker 2s infinite;
+}
+
+@keyframes neon-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+    52% { opacity: 0.1; }
+    54% { opacity: 1; }
+    56% { opacity: 0.5; }
+    58% { opacity: 1; }
+}
+
+/* Wet Pavement Reflection */
+.wet-pavement {
+    position: relative;
+}
+
+.wet-pavement::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(26,58,92,0.2)
+    );
+    transform: scaleY(-1);
+    filter: blur(2px);
+    opacity: 0.5;
+}
+
+/* Parallax Layers */
+.parallax-container {
+    perspective: 1000px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.parallax-layer {
+    position: absolute;
+    will-change: transform;
+}
+
+.parallax-back { transform: translateZ(-2px) scale(3); }
+.parallax-mid { transform: translateZ(-1px) scale(2); }
+.parallax-front { transform: translateZ(0); }
+
+/* Film Reel Border Effect */
+.film-reel {
+    position: relative;
+    border: 10px solid transparent;
+}
+
+.film-reel::before,
+.film-reel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    background: 
+        linear-gradient(
+            to bottom,
+            #1a1a1a 5%,
+            transparent 5%,
+            transparent 95%,
+            #1a1a1a 95%
+        );
+    background-size: 20px 40px;
+}
+
+.film-reel::before { left: -15px; }
+.film-reel::after { right: -15px; }
+
+/* Evidence Marker */
+.evidence-marker {
+    display: inline-block;
+    padding: 3px 8px;
+    border: 1px solid var(--blood-red);
+    color: var(--blood-red);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(139,0,0,0.1);
+}
+
+/* Red String Connection Line */
+.red-string {
+    position: relative;
+}
+
+.red-string::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--blood-red);
+    transform-origin: left;
+    animation: string-tension 3s ease-in-out infinite;
+}
+
+@keyframes string-tension {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(0.95); }
+}
+
+/* Police Tape Border */
+.police-tape {
+    position: relative;
+    border: 2px solid #ffd700;
+    background: repeating-linear-gradient(
+        45deg,
+        #ffd700,
+        #ffd700 20px,
+        #000 20px,
+        #000 40px
+    );
+    background-size: 56px 56px;
+}
+
+/* Fog Transition */
+.fog-transition {
+    position: relative;
+}
+
+.fog-transition::before,
+.fog-transition::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(
+        to bottom,
+        var(--midnight),
+        transparent
+    );
+    pointer-events: none;
+}
+
+.fog-transition::before { top: 0; }
+.fog-transition::after {
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+/* Blood Splatter (subtle) */
+.blood-splatter {
+    position: relative;
+}
+
+.blood-splatter::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 80% 20%,
+        rgba(139,0,0,0.1) 0%,
+        transparent 30%
+    );
+    pointer-events: none;
+}
+
+/* Vintage Paper Texture */
+.vintage-paper {
+    position: relative;
+}
+
+.vintage-paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeDiffuseLighting in='turbulence' lighting-color='%23f5f0e6' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* 3D Book Hover */
+.book-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.book-3d:hover {
+    transform: rotateY(15deg) rotateX(-5deg);
+}
+
+/* Scan Lines (for TV effect) */
+.scan-lines {
+    position: relative;
+}
+
+.scan-lines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.1) 3px
+    );
+    pointer-events: none;
+    animation: scan 8s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+}
+
+/* Loading Animation */
+.loading-noir {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--midnight);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.loading-noir .spinner {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--fog-gray);
+    border-top-color: var(--blood-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-noir .text {
+    margin-top: 20px;
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--gold);
+    letter-spacing: 5px;
+}

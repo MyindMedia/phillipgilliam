@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  pgilliam-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pgilliam-website
+    ports:
+      - "8888:80"
+    restart: unless-stopped
+    networks:
+      - pgilliam-net
+    
+    # Optional: mount for live editing
+    # volumes:
+    #   - .:/usr/share/nginx/html:ro
+
+networks:
+  pgilliam-net:
+    driver: bridge

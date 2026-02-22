@@ -1,0 +1,18 @@
+# Ignore files not needed in Docker build
+node_modules
+.git
+.github
+*.md
+Dockerfile
+docker-compose.yml
+.dockerignore
+push-to-github.sh
+*.zip
+*.tar.gz
+
+# Development files
+.vscode
+.idea
+*.swp
+*.swo
+*~

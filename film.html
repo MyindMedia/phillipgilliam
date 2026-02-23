@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Film | Black Leather Apron | Phillip Gilliam</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Linking to the shared global styles -->
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        .page-header {
+            padding: 150px 0 60px;
+            background: var(--gradient-dark);
+            border-bottom: 1px solid rgba(42, 42, 53, 0.3);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            color: var(--ivory);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .film-section {
+            padding: 80px 0;
+            background-color: var(--obsidian);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+        }
+
+        .video-card {
+            background: var(--gradient-cards);
+            border: 1px solid rgba(42, 42, 53, 0.5);
+            padding: 2rem;
+        }
+
+        .vimeo-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .vimeo-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-title {
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--ivory);
+            text-align: center;
+        }
+
+        .pitch-content {
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 1px solid var(--slate);
+            padding-top: 4rem;
+        }
+
+        .pitch-content h2 {
+            font-size: 2.5rem;
+            color: var(--ivory);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .pitch-content p {
+            color: #A0A0AA;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .pitch-materials {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .material-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(42, 42, 53, 0.2);
+            border: 1px solid var(--slate);
+            color: var(--accent-red);
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .material-link:hover {
+            background: rgba(209, 31, 38, 0.05);
+            border-color: var(--accent-red);
+            color: var(--ivory);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+
+    <nav>
+        <a href="/" class="nav-brand data-mono text-accent-red">P. GILLIAM</a>
+        <div class="nav-links data-mono">
+            <a href="/index.html#synopsis">At All Times</a>
+            <a href="/about.html">About</a>
+            <a href="/excerpt.html">Excerpt</a>
+            <a href="/reviews.html">Reviews</a>
+            <a href="/news.html">News</a>
+            <a href="/film.html">Film</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container reveal">
+            <span class="data-mono text-accent-red">Adaptation</span>
+            <h1 class="page-title drama-serif">The Film</h1>
+            <p class="page-subtitle">Proof of concept for the feature film Black Leather Apron</p>
+        </div>
+    </header>
+
+    <section class="film-section">
+        <div class="container">
+
+            <div class="video-grid">
+                <div class="video-card reveal">
+                    <div class="vimeo-container">
+                        <iframe src="https://player.vimeo.com/video/419418493" frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title drama-serif">Sizzle Reel 01</div>
+                </div>
+
+                <div class="video-card reveal" style="transition-delay: 0.1s;">
+                    <div class="vimeo-container">
+                        <iframe src="https://player.vimeo.com/video/363648413" frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title drama-serif">Sizzle Reel 02</div>
+                </div>
+            </div>
+
+            <div class="pitch-content reveal">
+                <h2 class="drama-serif">A Film by PHILLIP NOIRE, LLC</h2>
+
+                <p>My name is Phillip Gilliam and I am the writer of the erotic crime story and screenplay Black Leather
+                    Apron. I am searching for a literary agent who is a signatory with the Writers Guild of America. My
+                    search is two-fold. First, to assist with the pitch for an Executive Producer/Director for the
+                    feature film. Second to represent me as a crime author for my upcoming novels.</p>
+
+                <p>For the feature film, we have completed the One Page, Pitch Deck and Sizzle Reel. The treatment,
+                    screenplay and full union budget are also completed and available upon request. We're pitching to
+                    producers for the upfront funding and most importantly, the back-end distribution to insure an
+                    excellent return on the investment (ROI) for prospective financiers.</p>
+
+                <p>This is the first of a three novel/ film series with private detective John Talion. The other two
+                    stories planned are, "At All Times" (In production) and "Vengeance Is Mine". There is a fourth story
+                    planned about an inventor called "The Sisyphean Chamber".</p>
+
+                <div class="pitch-materials data-mono">
+                    <a href="https://pgilliam.com/pdf/Black-Leather-Apron-One-Sheet.pdf" target="_blank"
+                        class="material-link">One Sheet [PDF]</a>
+                    <a href="https://pgilliam.com/pdf/Film-Black-Leather-Apron-Pitchdeck.pdf" target="_blank"
+                        class="material-link">Pitch Deck [PDF]</a>
+                    <a href="https://pgilliam.com/pdf/WGAE-registrations.pdf" target="_blank" class="material-link">WGAE
+                        Reg. 1 [PDF]</a>
+                    <a href="https://pgilliam.com/pdf/WGAE_CERTofREG_I285574.pdf" target="_blank"
+                        class="material-link">WGAE Reg. 2 [PDF]</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container flex-between">
+            <div class="footer-status reveal">
+                <span class="status-indicator"></span>
+                <span class="data-mono text-ivory">System Operational</span>
+                <span class="data-mono text-slate">|</span>
+                <span class="data-mono text-slate">v0.9.5</span>
+            </div>
+            <div class="dev-credits reveal"
+                style="transition-delay: 0.1s; display: flex; align-items: center; gap: 1rem;">
+                <img src="/author-headshot.jpg" alt="Phil Gilliam"
+                    style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid var(--accent-red); filter: grayscale(100%);">
+                <span class="data-mono text-slate">Author</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        }, 100);
+    </script>
+</body>
+
+</html>

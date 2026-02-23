@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Phillip Gilliam</title>
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Import Midnight Luxe Typographic Palette -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Linking to the shared global styles -->
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        .page-header {
+            padding: 150px 0 60px;
+            background: var(--gradient-dark);
+            border-bottom: 1px solid rgba(42, 42, 53, 0.3);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            color: var(--ivory);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 80px 0;
+            background-color: var(--obsidian);
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .author-image-container {
+            position: sticky;
+            top: 120px;
+        }
+
+        .author-image-container img {
+            border: 1px solid var(--slate);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .author-image-container img:hover {
+            filter: grayscale(20%);
+            border-color: var(--accent-red);
+        }
+
+        .bio-prose h2 {
+            font-size: 2rem;
+            color: var(--ivory);
+            margin-bottom: 2rem;
+        }
+
+        .bio-prose p {
+            margin-bottom: 1.5rem;
+            color: #A0A0AA;
+            font-weight: 300;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 900px) {
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .author-image-container {
+                position: relative;
+                top: 0;
+                max-width: 400px;
+                margin: 0 auto 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+
+    <nav>
+        <a href="/" class="nav-brand data-mono text-accent-red">P. GILLIAM</a>
+        <div class="nav-links data-mono">
+            <a href="/index.html#synopsis">At All Times</a>
+            <a href="/about.html">About</a>
+            <a href="/excerpt.html">Excerpt</a>
+            <a href="/reviews.html">Reviews</a>
+            <a href="/news.html">News</a>
+            <a href="/film.html">Film</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container reveal">
+            <h1 class="page-title drama-serif">The Author</h1>
+            <p class="page-subtitle">Engineer. Storyteller. Architect of Noir.</p>
+        </div>
+    </header>
+
+    <section class="content-section">
+        <div class="container bio-grid">
+            <div class="author-image-container reveal" style="transition-delay: 0.1s;">
+                <img src="/author-headshot.jpg" alt="Phillip Gilliam, Author">
+            </div>
+
+            <div class="bio-prose reveal" style="transition-delay: 0.2s;">
+                <h2 class="drama-serif"><span class="text-accent-red">Phillip</span> Gilliam</h2>
+                <p>Phillip Gilliam was born in Norfolk, Virginia. He graduated from Morgan State University with a
+                    Bachelor of Science degree in Physics and Engineering in 1981 and immediately went to work for
+                    Verizon. A communications engineer by trade, he was awarded United States Patent 5,957,878 on
+                    September 28, 1999, in Biomechanics for custom compression garments. He was awarded United States
+                    Patent 7,803,092 on September 28, 2010, in Biomechanics for an exercise device called the Sisyphean
+                    Chamber.</p>
+
+                <p>He became a fan of the music, stories, tough guys, and dangerous women of film noir at a young age.
+                    He was mesmerized by the stylish Hollywood crime dramas and hard-boiled characters with their
+                    cynical attitudes, lost causes and sexual motivations. His heroes were Philip Marlowe, Cody Jarrett,
+                    Terry Malloy, Jake Gittes, and Vito Corleone. Roles and films made famous by actors like Humphrey
+                    Bogart, James Cagney, Robert Mitchum, Edward G. Robinson, Marlon Brando, and Jack Nicholson. Each of
+                    them led or misled by femme fatales like Jane Greer, Lauren Bacall, Betty Davis, Barbara Stanwyck,
+                    Lana Turner or Faye Dunaway. Some of them were just rotten to the core.</p>
+
+                <p>He was impacted by movies like The Big Sleep, Out of the Past, Key Largo, White Heat, On the
+                    Waterfront, Chinatown, and The Godfather. That influence continued with L.A Confidential, Basic
+                    Instinct, Se7en, Devil in a Blue Dress, Black Dahlia, and Public Enemies. Mention them, and you can
+                    almost hear the slow, distant saxophone solo in concert with a solitary piano keeping pace with the
+                    brushes lightly kissing the drums. Before the age of fifteen, he was listening to Frank Sinatra,
+                    Duke Ellington, Billie Holiday, and Count Basie.</p>
+
+                <p>The idea for Black Leather Apron began one spring when he went to Louie's Book Store to get a book
+                    called The Complete History of Jack the Ripper. He had an idea woven around that infamous serial
+                    killer. A tribute to the genre he loved. He didn't like that the Ripper was never caught, and he was
+                    going to catch him. The guy who would do it was John Talion, an ex-cop who fell on hard times but
+                    was about to show how far he would go in pursuit of evil.</p>
+
+                <p>Phil studied the actual 1888 crimes in grisly written and photographic detail. The book took him back
+                    through the gruesome murder scenes, the terror and pure evil that engulfed Whitechapel. He read it
+                    cover to cover to get angry enough to come after the Ripper in print. The book felt evil, and he
+                    would periodically have to put it down to cleanse himself before he started again, lest it become a
+                    part of him. Then he just started writing, from the heart.</p>
+
+                <p>The locations in 1888 Whitechapel looked strangely like an area of Baltimore called Fells Point. You
+                    could drive up Charles Street to the Washington Monument and Walters Art Galley area, and down to
+                    Fells Point where the alleyways and byways matched almost perfectly the deserted streets where Mary
+                    Nichols, Annie Chapman, Elizabeth Stride, Catherine Eddowes, Mary Kelly and Emma Smith were gutted,
+                    butchered and disemboweled.</p>
+
+                <p>He walked these alleys at night until he found the perfect replicas, scene for scene. He would stay
+                    after work, the only person on the third floor, just a few cubicles still lit. He would write, and
+                    if he needed to, drift out to see the locations, make notes and take location photos. It felt like
+                    what was needed to catch the Ripper.</p>
+
+                <p>And as he wrote, the story flowed out of him—a story with characters that he believed in, delivering
+                    the justice they deserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container flex-between">
+            <div class="footer-status reveal">
+                <span class="status-indicator"></span>
+                <span class="data-mono text-ivory">System Operational</span>
+                <span class="data-mono text-slate">|</span>
+                <span class="data-mono text-slate">v0.9.5</span>
+            </div>
+            <div class="dev-credits reveal"
+                style="transition-delay: 0.1s; display: flex; align-items: center; gap: 1rem;">
+                <img src="/author-headshot.jpg" alt="Phil Gilliam"
+                    style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid var(--accent-red); filter: grayscale(100%);">
+                <span class="data-mono text-slate">Author</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        }, 100);
+    </script>
+</body>
+
+</html>

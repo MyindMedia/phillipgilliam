@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews | Black Leather Apron | Phillip Gilliam</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Linking to the shared global styles -->
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        .page-header {
+            padding: 150px 0 60px;
+            background: var(--gradient-dark);
+            border-bottom: 1px solid rgba(42, 42, 53, 0.3);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            color: var(--ivory);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .reviews-section {
+            padding: 80px 0;
+            background-color: var(--obsidian);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .review-card {
+            background: var(--gradient-cards);
+            border: 1px solid rgba(42, 42, 53, 0.5);
+            padding: 2.5rem;
+            border-radius: 4px;
+            position: relative;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(209, 31, 38, 0.3);
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: rgba(209, 31, 38, 0.15);
+            line-height: 1;
+        }
+
+        .review-text {
+            color: #A0A0AA;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .reviewer-name {
+            color: var(--ivory);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+        }
+
+        .reviewer-name::before {
+            content: '—';
+            color: var(--accent-red);
+            margin-right: 0.5rem;
+        }
+
+        .star-rating {
+            color: var(--accent-red);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .featured-review {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 4rem;
+            border-color: var(--accent-red);
+            background: linear-gradient(145deg, rgba(209, 31, 38, 0.05) 0%, rgba(13, 13, 18, 0.9) 100%);
+        }
+
+        .featured-review::before {
+            left: 50%;
+            transform: translateX(-50%);
+            top: 10px;
+            font-size: 6rem;
+        }
+
+        .featured-review .review-text {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin-top: 1rem;
+        }
+
+        .featured-review .reviewer-name::before {
+            content: '';
+            margin-right: 0;
+        }
+
+        .featured-review .reviewer-name {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .featured-review {
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+
+    <nav>
+        <a href="/" class="nav-brand data-mono text-accent-red">P. GILLIAM</a>
+        <div class="nav-links data-mono">
+            <a href="/index.html#synopsis">At All Times</a>
+            <a href="/about.html">About</a>
+            <a href="/excerpt.html">Excerpt</a>
+            <a href="/reviews.html">Reviews</a>
+            <a href="/news.html">News</a>
+            <a href="/film.html">Film</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container reveal">
+            <span class="data-mono text-accent-red">Reader Verdicts</span>
+            <h1 class="page-title drama-serif">What They're Saying</h1>
+            <p class="page-subtitle">Reactions to the gritty, suspenseful world of Black Leather Apron.</p>
+        </div>
+    </header>
+
+    <section class="reviews-section">
+        <div class="container reviews-grid">
+
+            <div class="review-card featured-review reveal">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"Black Leather Apron was a great murder mystery read! It kept me on the edge of
+                    my seat anticipating what was going to happen next and who was going to do it! ... I hope Black
+                    Leather Apron makes it to the big screen or TV!"</p>
+                <span class="reviewer-name">Rachel C.</span>
+            </div>
+
+            <div class="review-card reveal" style="transition-delay: 0.1s;">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"Finally revisited the book last weekend. You are one crazy mother f***er! Very
+                    graphic and descriptive. Maybe a little too heavy on the violent killing for me, but I understand
+                    the Ripper connection."</p>
+                <span class="reviewer-name">Rich Q.</span>
+            </div>
+
+            <div class="review-card reveal" style="transition-delay: 0.2s;">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"The descriptions and mentions of Baltimore locales makes me want to take a ride
+                    up the Beltway to visit Fells Point. I appreciated the unpredictable plot twist that Mr. Gilliam
+                    casually tosses into the story... I anxiously await the sequel."</p>
+                <span class="reviewer-name">R. Marable</span>
+            </div>
+
+            <div class="review-card reveal" style="transition-delay: 0.3s;">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"Only a creative engineer could design a thriller full of all the STUFF we enjoy
+                    in a great book (lust, passion, sex, gore, suspense, humor, deception, manipulation... As a 34 year
+                    retired detective... Gilliam has my attention."</p>
+                <span class="reviewer-name">N. Franklin</span>
+            </div>
+
+            <div class="review-card reveal" style="transition-delay: 0.4s;">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"OMG!! Phil I know that you have always been a deep thinker with a passion for
+                    exceptional details. With each chapter, I wanted more to come. Black Leather Apron is a great read.
+                    What took you so long?"</p>
+                <span class="reviewer-name">Thina</span>
+            </div>
+
+            <div class="review-card reveal" style="transition-delay: 0.1s;">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"All you need is a weekend and a bottle of wine.... this book keeps you turning
+                    the pages. It's a sexy mystery that keeps you guessing. I love the way the author weaves mystery and
+                    murder with a modern twist."</p>
+                <span class="reviewer-name">Barbara P.</span>
+            </div>
+
+            <div class="review-card reveal" style="transition-delay: 0.2s;">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"This is an amazing read that captivated my full attention throughout the entire
+                    book! I can absolutely visualize this as a screenplay! Outstanding!! I cannot wait for the sequel!"
+                </p>
+                <span class="reviewer-name">Annette B.</span>
+            </div>
+
+            <div class="review-card reveal" style="transition-delay: 0.3s;">
+                <div class="star-rating">★★★★★</div>
+                <p class="review-text">"From the very first paragraph, this book drew me in with the descriptive words
+                    and intriguing details!! I was captivated! I wanted more and more and more! Awesome book & amazing
+                    crime story... I rate this book a 10!!"</p>
+                <span class="reviewer-name">Larry R.</span>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container flex-between">
+            <div class="footer-status reveal">
+                <span class="status-indicator"></span>
+                <span class="data-mono text-ivory">System Operational</span>
+                <span class="data-mono text-slate">|</span>
+                <span class="data-mono text-slate">v0.9.5</span>
+            </div>
+            <div class="dev-credits reveal"
+                style="transition-delay: 0.1s; display: flex; align-items: center; gap: 1rem;">
+                <img src="/author-headshot.jpg" alt="Phil Gilliam"
+                    style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid var(--accent-red); filter: grayscale(100%);">
+                <span class="data-mono text-slate">Author</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        }, 100);
+    </script>
+</body>
+
+</html>

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phillip Gilliam | AT ALL TIMES</title>
-    
+
     <!-- Preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Import Midnight Luxe Typographic Palette -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+        rel="stylesheet">
+
     <style>
         /* CSS Variables - Midnight Luxe Palette */
         :root {
             --obsidian: #0D0D12;
-            --champagne: #C9A84C;
+            --crimson: #d11f26;
             --ivory: #FAF8F5;
             --slate: #2A2A35;
-            
-            --champagne-glow: rgba(201, 168, 76, 0.15);
+
+            --crimson-glow: rgba(209, 31, 38, 0.15);
             --gradient-dark: linear-gradient(180deg, var(--obsidian) 0%, #15151c 100%);
             --gradient-cards: linear-gradient(145deg, rgba(42, 42, 53, 0.4) 0%, rgba(13, 13, 18, 0.9) 100%);
         }
@@ -60,12 +63,25 @@
             text-transform: uppercase;
         }
 
-        .text-champagne { color: var(--champagne); }
-        .text-ivory { color: var(--ivory); }
-        .text-slate { color: var(--slate); }
-        .text-center { text-align: center; }
+        .text-crimson {
+            color: var(--crimson);
+        }
 
-        .w-full { width: 100%; }
+        .text-ivory {
+            color: var(--ivory);
+        }
+
+        .text-slate {
+            color: var(--slate);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .w-full {
+            width: 100%;
+        }
 
         /* Structural Elements */
         .container {
@@ -105,30 +121,33 @@
         }
 
         .btn-primary {
-            background: var(--champagne);
+            background: var(--crimson);
             color: var(--obsidian);
-            border-color: var(--champagne);
+            border-color: var(--crimson);
             font-weight: 600;
         }
 
         .btn-primary:hover {
-            box-shadow: 0 0 30px var(--champagne-glow);
+            box-shadow: 0 0 30px var(--crimson-glow);
             background: #e0be5b;
             color: var(--obsidian);
             transform: translateY(-2px);
         }
 
         .btn-secondary:hover {
-            border-color: var(--champagne);
-            color: var(--champagne);
-            background: rgba(201, 168, 76, 0.05);
+            border-color: var(--crimson);
+            color: var(--crimson);
+            background: rgba(209, 31, 38, 0.05);
             transform: translateY(-2px);
         }
 
         /* Global Effects */
         .noise-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
             z-index: 9999;
             opacity: 0.03;
@@ -138,13 +157,15 @@
         /* Nav */
         nav {
             position: fixed;
-            top: 0; left: 0; width: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
             padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(180deg, rgba(13,13,18,0.95) 0%, rgba(13,13,18,0) 100%);
+            background: linear-gradient(180deg, rgba(13, 13, 18, 0.95) 0%, rgba(13, 13, 18, 0) 100%);
             backdrop-filter: blur(5px);
             border-bottom: 1px solid rgba(42, 42, 53, 0.3);
         }
@@ -169,7 +190,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--champagne);
+            color: var(--crimson);
         }
 
         /* Hero Section */
@@ -185,9 +206,11 @@
         .hero::after {
             content: '';
             position: absolute;
-            bottom: 0; right: 0;
-            width: 80%; height: 80%;
-            background: radial-gradient(circle at center, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+            bottom: 0;
+            right: 0;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle at center, rgba(209, 31, 38, 0.05) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
         }
@@ -195,8 +218,10 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -20%; left: -10%;
-            width: 50vw; height: 50vw;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
             background: radial-gradient(circle at center, rgba(42, 42, 53, 0.2) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
@@ -216,7 +241,7 @@
         }
 
         .hero-title .highlight {
-            color: var(--champagne);
+            color: var(--crimson);
         }
 
         .hero-subtitle {
@@ -254,7 +279,7 @@
 
         .feature-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(201, 168, 76, 0.3);
+            border-color: rgba(209, 31, 38, 0.3);
         }
 
         .feature-card h3 {
@@ -279,7 +304,7 @@
             content: '—';
             position: absolute;
             left: 0;
-            color: var(--champagne);
+            color: var(--crimson);
             opacity: 0.5;
         }
 
@@ -294,7 +319,7 @@
             content: '';
             width: 6px;
             height: 6px;
-            background: var(--champagne);
+            background: var(--crimson);
             border-radius: 50%;
             animation: pulse 2s infinite ease-in-out;
         }
@@ -327,8 +352,10 @@
         .synopsis-image::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border: 1px solid var(--slate);
             transform: translate(-15px, -15px);
             z-index: 0;
@@ -338,13 +365,13 @@
         .synopsis-image img {
             position: relative;
             z-index: 10;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .synopsis:hover .synopsis-image::before {
             transform: translate(-5px, -5px);
-            border-color: var(--champagne);
+            border-color: var(--crimson);
         }
 
         .synopsis-text h2 {
@@ -366,14 +393,16 @@
             padding: 180px 0;
             position: relative;
         }
-        
+
         .philosophy::before {
             content: '';
             position: absolute;
-            top: 0; left: 50%;
+            top: 0;
+            left: 50%;
             transform: translateX(-50%);
-            width: 1px; height: 80px;
-            background: linear-gradient(to bottom, var(--champagne), transparent);
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--crimson), transparent);
         }
 
         .philosophy-statement {
@@ -389,7 +418,7 @@
             color: var(--ivory);
         }
 
-        .philosophy-statement .text-champagne {
+        .philosophy-statement .text-crimson {
             display: block;
             margin-top: 0.5rem;
         }
@@ -465,18 +494,27 @@
 
         .status-indicator {
             display: inline-block;
-            width: 8px; height: 8px;
-            background-color: var(--champagne);
+            width: 8px;
+            height: 8px;
+            background-color: var(--crimson);
             border-radius: 50%;
             margin-right: 8px;
-            box-shadow: 0 0 10px var(--champagne);
+            box-shadow: 0 0 10px var(--crimson);
         }
 
         /* Animations */
         @keyframes pulse {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
+            0% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
         }
 
         .reveal {
@@ -492,25 +530,48 @@
 
         /* Media Queries */
         @media (max-width: 900px) {
-            .grid-2-col, .grid-3-col, .protocol-grid {
+
+            .grid-2-col,
+            .grid-3-col,
+            .protocol-grid {
                 grid-template-columns: 1fr;
             }
-            .protocol-grid { gap: 4rem; }
-            .hero-actions { flex-direction: column; width: 100%; }
-            .btn { text-align: center; }
-            .nav-links { display: none; } /* Simplified for structural demo */
+
+            .protocol-grid {
+                gap: 4rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* Simplified for structural demo */
         }
     </style>
 </head>
+
 <body>
     <div class="noise-overlay"></div>
 
     <nav>
-        <a href="#" class="nav-brand data-mono text-champagne">P. GILLIAM</a>
+        <a href="#" class="nav-brand data-mono text-crimson">P. GILLIAM</a>
         <div class="nav-links data-mono">
-            <a href="#synopsis">At All Times</a>
-            <a href="#series">Series</a>
-            <a href="#formats">Formats</a>
+            <a href="/index.html#synopsis">At All Times</a>
+            <a href="/about.html">About</a>
+            <a href="/excerpt.html">Excerpt</a>
+            <a href="/reviews.html">Reviews</a>
+            <a href="/news.html">News</a>
+            <a href="/film.html">Film</a>
+            <a href="/contact.html">Contact</a>
         </div>
     </nav>
 
@@ -534,7 +595,7 @@
     <section class="features">
         <div class="container grid-3-col">
             <div class="feature-card reveal" style="transition-delay: 0.1s;">
-                <span class="data-mono text-champagne">New Release</span>
+                <span class="data-mono text-crimson">New Release</span>
                 <h3>AT ALL TIMES</h3>
                 <ul>
                     <li>Detective John Talion returns</li>
@@ -553,7 +614,7 @@
                 </ul>
             </div>
             <div class="feature-card reveal" style="transition-delay: 0.3s;">
-                <span class="data-mono text-champagne">Established Work</span>
+                <span class="data-mono text-crimson">Established Work</span>
                 <h3>Black Leather Apron</h3>
                 <ul>
                     <li>Award-winning historical thriller</li>
@@ -567,16 +628,27 @@
     <section id="synopsis" class="synopsis">
         <div class="container grid-2-col">
             <div class="synopsis-image reveal">
-                <img src="images/at-all-times-cover.png" alt="At All Times Front Cover Design" onerror="this.src='https://placehold.co/800x1200/0D0D12/C9A84C?text=AT+ALL+TIMES'">
+                <img src="images/at-all-times-cover.png" alt="At All Times Front Cover Design"
+                    onerror="this.src='https://placehold.co/800x1200/0D0D12/C9A84C?text=AT+ALL+TIMES'">
             </div>
             <div class="synopsis-text reveal" style="transition-delay: 0.2s;">
-                <span class="data-mono text-champagne">The Investigation</span>
-                <h2 class="drama-serif">A hard-edged tale where justice is optional, power is invisible, and vengeance is never satisfied.</h2>
+                <span class="data-mono text-crimson">The Investigation</span>
+                <h2 class="drama-serif">A hard-edged tale where justice is optional, power is invisible, and vengeance
+                    is never satisfied.</h2>
                 <div class="prose">
-                    <p>Ex-homicide detective John Talion finds the battered, bludgeoned, knee-capped body of his childhood friend, ex-boxer Yaqui Galindez, dumped outside his office. The murder is deliberate and personal. A message. Alongside the body, a photograph of a priceless synthetic diamond, the Estrella de la Muerte, and a plea for help.</p>
-                    <p>Pulled back into a city that no longer wants him, Talion uncovers a violent network linking a tortured gemologist, a fixed championship fight, dirty cops, and a murdered young mother whose secret life brought her too close to the wolves.</p>
-                    <p>As bodies accumulate, the crimes reveal a larger game of sexual exploitation, political blackmail, and institutional corruption. At the center stands Baltimore, where power hides behind respectability and justice bends quietly out of sight.</p>
-                    <p>When an ambush leaves Talion barely alive, the message becomes clear. He is no longer investigating the conspiracy. He is part of it. Forced to choose between lust, survival, and accountability, Talion chooses all three. The cost may be his life.</p>
+                    <p>Ex-homicide detective John Talion finds the battered, bludgeoned, knee-capped body of his
+                        childhood friend, ex-boxer Yaqui Galindez, dumped outside his office. The murder is deliberate
+                        and personal. A message. Alongside the body, a photograph of a priceless synthetic diamond, the
+                        Estrella de la Muerte, and a plea for help.</p>
+                    <p>Pulled back into a city that no longer wants him, Talion uncovers a violent network linking a
+                        tortured gemologist, a fixed championship fight, dirty cops, and a murdered young mother whose
+                        secret life brought her too close to the wolves.</p>
+                    <p>As bodies accumulate, the crimes reveal a larger game of sexual exploitation, political
+                        blackmail, and institutional corruption. At the center stands Baltimore, where power hides
+                        behind respectability and justice bends quietly out of sight.</p>
+                    <p>When an ambush leaves Talion barely alive, the message becomes clear. He is no longer
+                        investigating the conspiracy. He is part of it. Forced to choose between lust, survival, and
+                        accountability, Talion chooses all three. The cost may be his life.</p>
                 </div>
             </div>
         </div>
@@ -586,11 +658,11 @@
         <div class="container text-center reveal">
             <h2 class="philosophy-statement drama-serif">
                 Most crime stories focus on the crime.<br>
-                <span class="text-champagne">We focus on the machinery behind it.</span>
+                <span class="text-crimson">We focus on the machinery behind it.</span>
             </h2>
             <h2 class="philosophy-statement drama-serif" style="transition-delay: 0.2s;">
                 Most thrillers chase villains.<br>
-                <span class="text-champagne">We expose the systems that protect them.</span>
+                <span class="text-crimson">We expose the systems that protect them.</span>
             </h2>
         </div>
     </section>
@@ -599,17 +671,17 @@
         <div class="container">
             <div class="protocol-grid">
                 <div class="protocol-step reveal">
-                    <span class="data-mono text-champagne">Step 01</span>
+                    <span class="data-mono text-crimson">Step 01</span>
                     <h3>Enter the city</h3>
                     <p>A noir world where power hides in plain sight.</p>
                 </div>
                 <div class="protocol-step reveal" style="transition-delay: 0.1s;">
-                    <span class="data-mono text-champagne">Step 02</span>
+                    <span class="data-mono text-crimson">Step 02</span>
                     <h3>Uncover the network</h3>
                     <p>Violence, corruption, and invisible control.</p>
                 </div>
                 <div class="protocol-step reveal" style="transition-delay: 0.2s;">
-                    <span class="data-mono text-champagne">Step 03</span>
+                    <span class="data-mono text-crimson">Step 03</span>
                     <h3>Face the cost</h3>
                     <p>Truth demands blood.</p>
                 </div>
@@ -623,7 +695,7 @@
                 <span class="data-mono text-slate">Acquisition</span>
                 <h2 class="drama-serif text-ivory">Book Formats</h2>
             </header>
-            
+
             <div class="grid-3-col">
                 <div class="feature-card reveal" style="transition-delay: 0.1s;">
                     <h3 class="data-mono text-ivory" style="font-size:1.25rem;">Essential</h3>
@@ -632,15 +704,15 @@
                     </div>
                     <a href="#" class="btn btn-secondary w-full">Pre-Order Now</a>
                 </div>
-                
-                <div class="feature-card reveal" style="border-color: var(--champagne); transition-delay: 0.2s;">
-                    <h3 class="data-mono text-champagne" style="font-size:1.25rem;">Performance</h3>
+
+                <div class="feature-card reveal" style="border-color: var(--crimson); transition-delay: 0.2s;">
+                    <h3 class="data-mono text-crimson" style="font-size:1.25rem;">Performance</h3>
                     <div class="tier-features">
                         <p class="text-ivory">Signed Copy + Exclusive Bonus Content</p>
                     </div>
                     <a href="#" class="btn btn-primary w-full">Pre-Order Now</a>
                 </div>
-                
+
                 <div class="feature-card reveal" style="transition-delay: 0.3s;">
                     <h3 class="data-mono text-ivory" style="font-size:1.25rem;">Enterprise</h3>
                     <div class="tier-features">
@@ -658,13 +730,14 @@
             <div class="footer-status reveal">
                 <span class="status-indicator"></span>
                 <span class="data-mono text-ivory">System Operational</span>
+                <span class="data-mono text-slate">|</span>
+                <span class="data-mono text-slate">v0.9.4</span>
             </div>
-            <div class="footer-center reveal" style="transition-delay: 0.1s;">
-                <span class="data-mono text-slate">Phillip Gilliam Literary Universe Active</span>
-            </div>
-            <div class="footer-author reveal" style="transition-delay: 0.2s; display: flex; align-items: center; gap: 15px;">
-                 <img src="images/phillip-gilliam-headshot.png" alt="Phillip Gilliam" style="width: 40px; height: 40px; border-radius: 50%; opacity: 0.8; object-fit: cover;">
-                 <span class="data-mono text-slate">Author</span>
+            <div class="dev-credits reveal"
+                style="transition-delay: 0.1s; display: flex; align-items: center; gap: 1rem;">
+                <img src="/author-headshot.jpg" alt="Phil Gilliam"
+                    style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid var(--crimson); filter: grayscale(100%);">
+                <span class="data-mono text-slate">Author</span>
             </div>
         </div>
     </footer>
@@ -688,11 +761,12 @@
         document.querySelectorAll('.reveal').forEach((el) => {
             observer.observe(el);
         });
-        
+
         // Initial reveal for items above fold
         setTimeout(() => {
             document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('active'));
         }, 100);
     </script>
 </body>
+
 </html>

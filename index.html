@@ -12,551 +12,9 @@
 
     <!-- Import Midnight Luxe Typographic Palette -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-
-    <style>
-        /* CSS Variables - Midnight Luxe Palette */
-        :root {
-            --obsidian: #0D0D12;
-            --crimson: #d11f26;
-            --ivory: #FAF8F5;
-            --slate: #2A2A35;
-
-            --crimson-glow: rgba(209, 31, 38, 0.15);
-            --gradient-dark: linear-gradient(180deg, var(--obsidian) 0%, #15151c 100%);
-            --gradient-cards: linear-gradient(145deg, rgba(42, 42, 53, 0.4) 0%, rgba(13, 13, 18, 0.9) 100%);
-        }
-
-        /* Base Resets & Typography */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--obsidian);
-            color: var(--ivory);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Typographic Classes */
-        .drama-serif {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        .data-mono {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .text-crimson {
-            color: var(--crimson);
-        }
-
-        .text-ivory {
-            color: var(--ivory);
-        }
-
-        .text-slate {
-            color: var(--slate);
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .w-full {
-            width: 100%;
-        }
-
-        /* Structural Elements */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 5%;
-        }
-
-        section {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* Global UI Elements */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: 1px solid var(--slate);
-            color: var(--ivory);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            background: transparent;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-primary {
-            background: var(--crimson);
-            color: var(--obsidian);
-            border-color: var(--crimson);
-            font-weight: 600;
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 0 30px var(--crimson-glow);
-            background: #e0be5b;
-            color: var(--obsidian);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--crimson);
-            color: var(--crimson);
-            background: rgba(209, 31, 38, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Global Effects */
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Nav */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: linear-gradient(180deg, rgba(13, 13, 18, 0.95) 0%, rgba(13, 13, 18, 0) 100%);
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(42, 42, 53, 0.3);
-        }
-
-        .nav-brand {
-            font-size: 1.5rem;
-            text-decoration: none;
-            color: var(--ivory);
-            font-weight: 300;
-            letter-spacing: 0.1em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--ivory);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--crimson);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background-color: var(--obsidian);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(circle at center, rgba(209, 31, 38, 0.05) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle at center, rgba(42, 42, 53, 0.2) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 6vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            color: var(--ivory);
-            max-width: 800px;
-        }
-
-        .hero-title .highlight {
-            color: var(--crimson);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: #A0A0AA;
-            max-width: 600px;
-            margin-bottom: 3rem;
-            font-weight: 300;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        /* Feature Cards (3-up) */
-        .features {
-            background: var(--gradient-dark);
-        }
-
-        .grid-3-col {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--gradient-cards);
-            border: 1px solid rgba(42, 42, 53, 0.5);
-            padding: 3rem 2rem;
-            position: relative;
-            transition: transform 0.4s ease, border-color 0.4s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(209, 31, 38, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin: 1.5rem 0 1rem;
-            color: var(--ivory);
-        }
-
-        .feature-card ul {
-            list-style: none;
-            color: #A0A0AA;
-            font-weight: 300;
-        }
-
-        .feature-card li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--crimson);
-            opacity: 0.5;
-        }
-
-        /* Terminal styling for Card 2 */
-        .terminal-card .live-blink {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .terminal-card .live-blink::after {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--crimson);
-            border-radius: 50%;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        .terminal-feed li::before {
-            content: '>';
-            color: var(--slate);
-        }
-
-        /* Synopsis Section */
-        .synopsis {
-            border-top: 1px solid rgba(42, 42, 53, 0.3);
-            border-bottom: 1px solid rgba(42, 42, 53, 0.3);
-            background-color: var(--obsidian);
-            position: relative;
-        }
-
-        .grid-2-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .synopsis-image {
-            position: relative;
-            padding: 1rem;
-        }
-
-        .synopsis-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px solid var(--slate);
-            transform: translate(-15px, -15px);
-            z-index: 0;
-            transition: transform 0.4s ease;
-        }
-
-        .synopsis-image img {
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .synopsis:hover .synopsis-image::before {
-            transform: translate(-5px, -5px);
-            border-color: var(--crimson);
-        }
-
-        .synopsis-text h2 {
-            font-size: 2.5rem;
-            margin: 1.5rem 0 2.5rem;
-            color: var(--ivory);
-            line-height: 1.2;
-        }
-
-        .prose p {
-            margin-bottom: 1.5rem;
-            color: #A0A0AA;
-            font-weight: 300;
-        }
-
-        /* Philosophy */
-        .philosophy {
-            background-color: var(--obsidian);
-            padding: 180px 0;
-            position: relative;
-        }
-
-        .philosophy::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 80px;
-            background: linear-gradient(to bottom, var(--crimson), transparent);
-        }
-
-        .philosophy-statement {
-            font-size: clamp(2rem, 4vw, 3rem);
-            line-height: 1.4;
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            color: var(--slate);
-            transition: color 0.8s ease;
-        }
-
-        .philosophy-statement:hover {
-            color: var(--ivory);
-        }
-
-        .philosophy-statement .text-crimson {
-            display: block;
-            margin-top: 0.5rem;
-        }
-
-        /* Protocol */
-        .protocol {
-            background: var(--gradient-dark);
-            border-top: 1px solid rgba(42, 42, 53, 0.3);
-        }
-
-        .protocol-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            border-top: 1px solid var(--slate);
-            padding-top: 4rem;
-        }
-
-        .protocol-step {
-            position: relative;
-        }
-
-        .protocol-step h3 {
-            font-size: 1.5rem;
-            margin: 1rem 0;
-            color: var(--ivory);
-        }
-
-        .protocol-step p {
-            color: #A0A0AA;
-            font-weight: 300;
-        }
-
-        /* Pricing (Book Formats) */
-        .pricing {
-            background-color: var(--obsidian);
-            border-top: 1px solid rgba(42, 42, 53, 0.3);
-        }
-
-        .pricing-header {
-            margin-bottom: 4rem;
-        }
-
-        .pricing-header h2 {
-            font-size: 3rem;
-            margin-top: 1rem;
-        }
-
-        .tier-features {
-            margin: 2rem 0;
-            min-height: 80px;
-        }
-
-        .tier-features p {
-            margin-bottom: 0.5rem;
-            color: #A0A0AA;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #08080A;
-            padding: 3rem 0;
-            border-top: 1px solid rgba(42, 42, 53, 0.5);
-        }
-
-        .flex-between {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .status-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: var(--crimson);
-            border-radius: 50%;
-            margin-right: 8px;
-            box-shadow: 0 0 10px var(--crimson);
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0% {
-                opacity: 0.3;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0.3;
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Media Queries */
-        @media (max-width: 900px) {
-
-            .grid-2-col,
-            .grid-3-col,
-            .protocol-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .protocol-grid {
-                gap: 4rem;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                text-align: center;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            /* Simplified for structural demo */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -576,18 +34,35 @@
     </nav>
 
     <section class="hero">
-        <div class="container">
-            <h1 class="hero-title drama-serif reveal">
-                Justice meets Obsession.<br>
-                <span class="highlight">Truth, at a cost.</span>
-            </h1>
-            <p class="hero-subtitle reveal" style="transition-delay: 0.1s;">
-                A hard-nosed crime thriller from Phillip Gilliam.<br>
-                AT ALL TIMES explores lust, loyalty, corruption, and the price of truth.
-            </p>
-            <div class="hero-actions reveal" style="transition-delay: 0.2s;">
-                <a href="#formats" class="btn btn-primary">Pre-Order AT ALL TIMES</a>
-                <a href="#formats" class="btn btn-secondary">Buy Black Leather Apron</a>
+        <canvas id="rainCanvas"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.6;"></canvas>
+        <div class="container grid-2-col"
+            style="position: relative; z-index: 10; align-items: center; padding-top: 80px;">
+            <div class="hero-text-side">
+                <h1 class="hero-title drama-serif reveal">
+                    Justice meets Obsession.<br>
+                    <span class="highlight">Truth, at a cost.</span>
+                </h1>
+                <p class="hero-subtitle reveal" style="transition-delay: 0.1s;">
+                    A hard-nosed crime thriller from Phillip Gilliam.<br>
+                    Explore the dark underbelly where lust, loyalty, and corruption collide.
+                </p>
+                <div class="hero-actions reveal" style="transition-delay: 0.2s;">
+                    <a href="#formats" class="btn btn-primary">Pre-Order AT ALL TIMES</a>
+                    <a href="#formats" class="btn btn-secondary">Buy Black Leather Apron</a>
+                </div>
+            </div>
+            <div class="hero-books-side reveal"
+                style="transition-delay: 0.3s; display: flex; gap: 2rem; justify-content: center; transform-style: preserve-3d; perspective: 1000px; flex-wrap: wrap;">
+                <img src="images/at-all-times-cover.png" alt="At All Times" class="book-hover"
+                    onmouseover="this.style.transform='rotateY(0deg) translateY(0px) scale(1.05)'"
+                    onmouseout="this.style.transform='rotateY(-15deg) translateY(20px) scale(1)'"
+                    style="width: 100%; max-width: 250px; height: auto; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; transform: rotateY(-15deg) translateY(20px); transition: transform 0.5s ease; cursor: pointer;">
+                <img src="https://placehold.co/800x1200/0D0D12/C9A84C?text=BLACK+LEATHER+APRON"
+                    alt="Black Leather Apron" class="book-hover"
+                    onmouseover="this.style.transform='rotateY(0deg) translateY(0px) scale(1.05)'"
+                    onmouseout="this.style.transform='rotateY(15deg) translateY(-20px) scale(1)'"
+                    style="width: 100%; max-width: 250px; height: auto; object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; transform: rotateY(15deg) translateY(-20px); transition: transform 0.5s ease; cursor: pointer;">
             </div>
         </div>
     </section>
@@ -766,6 +241,53 @@
         setTimeout(() => {
             document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('active'));
         }, 100);
+
+        // Rain Canvas Logic
+        const canvas = document.getElementById('rainCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const raindrops = [];
+            for (let i = 0; i < 150; i++) {
+                raindrops.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    length: Math.random() * 20 + 10,
+                    velocity: Math.random() * 10 + 15
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = 'rgba(174,194,224,0.3)';
+                ctx.lineWidth = 1;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                for (let i = 0; i < raindrops.length; i++) {
+                    const drop = raindrops[i];
+                    ctx.moveTo(drop.x, drop.y);
+                    ctx.lineTo(drop.x + drop.velocity * 0.2, drop.y + drop.length);
+
+                    drop.y += drop.velocity;
+                    drop.x += drop.velocity * 0.2;
+
+                    if (drop.y > canvas.height) {
+                        drop.y = -drop.length;
+                        drop.x = Math.random() * canvas.width;
+                    }
+                }
+                ctx.stroke();
+                requestAnimationFrame(draw);
+            }
+            draw();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
     </script>
 </body>
 

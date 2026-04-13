@@ -509,7 +509,10 @@ img { max-width: 100%; display: block; }
 }
 /* FRONT COVER */
 .book-3d__face--front {
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   transform: translateZ(calc(var(--book-d) / 2));
   border-radius: var(--book-radius) 4px 4px var(--book-radius);
   box-shadow:
@@ -535,8 +538,11 @@ img { max-width: 100%; display: block; }
 }
 /* BACK COVER */
 .book-3d__face--back {
-  inset: 0;
-  transform: rotateY(180deg) translateZ(calc(var(--book-d) / 2));
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(calc(var(--book-d) / -2)) rotateY(180deg);
   background:
     radial-gradient(120% 90% at 30% 20%, rgba(185,28,28,0.08), transparent 60%),
     linear-gradient(135deg, #0c0c10 0%, #16161b 100%);
@@ -556,14 +562,13 @@ img { max-width: 100%; display: block; }
   text-align: center;
   white-space: nowrap;
 }
-/* SPINE */
+/* SPINE (left side of book) */
 .book-3d__face--spine {
   top: 0;
-  left: 0;
+  left: calc(var(--book-d) / -2);
   width: var(--book-d);
   height: 100%;
-  transform-origin: left center;
-  transform: rotateY(-90deg) translateZ(0);
+  transform: rotateY(-90deg);
   background:
     linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.55) 100%),
     linear-gradient(180deg, #18181d 0%, #0c0c10 100%);
@@ -599,12 +604,11 @@ img { max-width: 100%; display: block; }
 }
 /* TOP EDGE (paper stack) */
 .book-3d__face--top {
-  top: 0;
+  top: calc(var(--book-d) / -2);
   left: 0;
   width: 100%;
   height: var(--book-d);
-  transform-origin: top center;
-  transform: rotateX(-90deg) translateZ(0);
+  transform: rotateX(90deg);
   background:
     repeating-linear-gradient(
       90deg,
@@ -619,12 +623,11 @@ img { max-width: 100%; display: block; }
 }
 /* BOTTOM EDGE (paper stack) */
 .book-3d__face--bottom {
-  bottom: 0;
+  bottom: calc(var(--book-d) / -2);
   left: 0;
   width: 100%;
   height: var(--book-d);
-  transform-origin: bottom center;
-  transform: rotateX(90deg) translateZ(0);
+  transform: rotateX(-90deg);
   background:
     repeating-linear-gradient(
       90deg,
@@ -640,11 +643,10 @@ img { max-width: 100%; display: block; }
 /* RIGHT EDGE (page side) */
 .book-3d__face--edge {
   top: 0;
-  right: 0;
+  right: calc(var(--book-d) / -2);
   width: var(--book-d);
   height: 100%;
-  transform-origin: right center;
-  transform: rotateY(90deg) translateZ(0);
+  transform: rotateY(90deg);
   background:
     repeating-linear-gradient(
       0deg,

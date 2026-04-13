@@ -533,9 +533,9 @@ img { max-width: 100%; display: block; }
   transform-style: preserve-3d;
 }
 .hero__book-stack .book-3d--hero {
-  --book-w: clamp(190px, 22vw, 260px);
+  --book-w: clamp(209px, 24.2vw, 286px);
   --book-h: calc(var(--book-w) * 1.5);
-  --book-d: 42px;
+  --book-d: 46px;
 }
 .hero__book-stack .book-3d--back-stack {
   transform: translate3d(28px, 14px, 0);
@@ -1800,8 +1800,8 @@ img { max-width: 100%; display: block; }
   .hero__container { grid-template-columns: 1fr; gap: 4rem; }
   .hero__visual { height: 540px; max-width: 520px; margin: 0 auto; }
   .hero__book-stack .book-3d--hero {
-    --book-w: 200px;
-    --book-d: 38px;
+    --book-w: 220px;
+    --book-d: 42px;
   }
   .hero__stats { gap: 2rem; }
 

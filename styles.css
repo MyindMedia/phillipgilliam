@@ -1115,6 +1115,52 @@ img { max-width: 100%; display: block; }
   justify-content: center;
 }
 
+/* Long-form excerpt variant: full passages from each book. */
+.excerpt__grid--long {
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.excerpt__card--long {
+  padding: 3rem clamp(1.5rem, 4vw, 3.5rem);
+}
+.excerpt__card--long .excerpt__body {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--bone);
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(185,28,28,0.5) transparent;
+}
+.excerpt__card--long .excerpt__body::-webkit-scrollbar {
+  width: 6px;
+}
+.excerpt__card--long .excerpt__body::-webkit-scrollbar-thumb {
+  background: rgba(185,28,28,0.45);
+  border-radius: 3px;
+}
+.excerpt__card--long .excerpt__body p {
+  margin: 0 0 1.15rem 0;
+  text-indent: 1.5em;
+}
+.excerpt__card--long .excerpt__body p:first-child {
+  text-indent: 0;
+}
+.excerpt__card--long .excerpt__body .excerpt__vo {
+  text-indent: 0;
+  text-align: center;
+  font-style: italic;
+  color: var(--blood-hot);
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  margin: 1.5rem 0;
+}
+
 /* ═══════════════════════════════════════════════════════
    PULL QUOTE
    ═══════════════════════════════════════════════════════ */

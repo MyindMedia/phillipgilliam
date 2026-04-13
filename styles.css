@@ -440,73 +440,252 @@ img { max-width: 100%; display: block; }
 /* Hero book stack */
 .hero__visual {
   position: relative;
-  height: clamp(420px, 60vh, 640px);
-  perspective: 1600px;
+  height: clamp(460px, 62vh, 660px);
+  perspective: 2000px;
+  perspective-origin: 50% 45%;
 }
 .hero__book-stack {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
   transform-style: preserve-3d;
 }
-.hero__book {
-  position: absolute;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow:
-    0 30px 80px -20px rgba(0,0,0,0.8),
-    0 0 0 1px rgba(255,255,255,0.04);
-  transition: transform 1200ms var(--ease-out-expo);
+.hero__book-stack .book-3d--hero {
+  --book-w: clamp(190px, 22vw, 260px);
+  --book-h: calc(var(--book-w) * 1.5);
+  --book-d: 42px;
+}
+.hero__book-stack .book-3d--back-stack {
+  transform: translate3d(28px, 14px, 0);
+  opacity: 0.92;
+  z-index: 1;
+}
+.hero__book-stack .book-3d--front-stack {
+  transform: translate3d(-28px, -14px, 0);
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BOOK 3D COMPONENT (reusable hero + feature)
+   ═══════════════════════════════════════════════════════ */
+.book-3d {
+  --book-w: 300px;
+  --book-h: 450px;
+  --book-d: 42px;
+  --book-rx: 6deg;
+  --book-ry: -28deg;
+  --book-radius: 3px;
+
+  position: relative;
+  width: var(--book-w);
+  height: var(--book-h);
+  flex-shrink: 0;
+}
+.book-3d__scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+.book-3d__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--book-rx)) rotateY(var(--book-ry));
+  transition: transform 900ms var(--ease-out-expo);
   will-change: transform;
 }
-.hero__book img {
+.book-3d__face {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+/* FRONT COVER */
+.book-3d__face--front {
+  inset: 0;
+  transform: translateZ(calc(var(--book-d) / 2));
+  border-radius: var(--book-radius) 4px 4px var(--book-radius);
+  box-shadow:
+    inset 2px 0 6px rgba(255,255,255,0.05),
+    inset -1px 0 3px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(255,255,255,0.04);
+}
+.book-3d__face--front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.hero__book figcaption {
+.book-3d__face--front::after {
+  content: '';
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 0.6rem 0.9rem;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--bone);
-  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 100%);
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.28) 0%, transparent 8%, transparent 94%, rgba(0,0,0,0.18) 100%),
+    linear-gradient(120deg, rgba(255,255,255,0.12) 0%, transparent 38%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+/* BACK COVER */
+.book-3d__face--back {
+  inset: 0;
+  transform: rotateY(180deg) translateZ(calc(var(--book-d) / 2));
+  background:
+    radial-gradient(120% 90% at 30% 20%, rgba(185,28,28,0.08), transparent 60%),
+    linear-gradient(135deg, #0c0c10 0%, #16161b 100%);
+  border-radius: 4px var(--book-radius) var(--book-radius) 4px;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.6);
+}
+.book-3d__face--back::after {
+  content: 'THE JOHN TALION MYSTERIES';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: rgba(189,179,176,0.35);
+  text-align: center;
+  white-space: nowrap;
+}
+/* SPINE */
+.book-3d__face--spine {
+  top: 0;
+  left: 0;
+  width: var(--book-d);
+  height: 100%;
+  transform-origin: left center;
+  transform: rotateY(-90deg) translateZ(0);
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.55) 100%),
+    linear-gradient(180deg, #18181d 0%, #0c0c10 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem 0;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+}
+.book-3d__spine-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-serif);
+  font-size: calc(var(--book-d) * 0.28);
   font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--bone);
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
-.hero__book--front {
-  width: 54%;
-  height: 88%;
-  top: 6%;
-  left: 44%;
-  z-index: 2;
-  transform: rotateY(-9deg) rotateX(2deg);
+.book-3d__spine-author {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: calc(var(--book-d) * 0.2);
+  letter-spacing: 0.22em;
+  color: var(--blood-hot);
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-.hero__book--back {
-  width: 48%;
-  height: 80%;
-  top: 10%;
-  left: 2%;
-  z-index: 1;
-  transform: rotateY(11deg) rotateX(2deg);
-  opacity: 0.94;
+/* TOP EDGE (paper stack) */
+.book-3d__face--top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--book-d);
+  transform-origin: top center;
+  transform: rotateX(-90deg) translateZ(0);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #f0e9e4 0px,
+      #e4ddd6 1px,
+      #f0e9e4 2px
+    ),
+    linear-gradient(180deg, #f4ede7 0%, #d8cfc6 100%);
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.4),
+    inset 0 -2px 6px rgba(0,0,0,0.3);
 }
-.hero__book-badge {
+/* BOTTOM EDGE (paper stack) */
+.book-3d__face--bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--book-d);
+  transform-origin: bottom center;
+  transform: rotateX(90deg) translateZ(0);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #ece5df 0px,
+      #ddd5cc 1px,
+      #ece5df 2px
+    ),
+    linear-gradient(0deg, #eee7e1 0%, #cec5bb 100%);
+  box-shadow:
+    inset 0 -2px 4px rgba(255,255,255,0.3),
+    inset 0 2px 6px rgba(0,0,0,0.4);
+}
+/* RIGHT EDGE (page side) */
+.book-3d__face--edge {
+  top: 0;
+  right: 0;
+  width: var(--book-d);
+  height: 100%;
+  transform-origin: right center;
+  transform: rotateY(90deg) translateZ(0);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #f2ece6 0px,
+      #e5ded7 1px,
+      #f2ece6 2px
+    ),
+    linear-gradient(90deg, #f4ede7 0%, #d6cdc3 100%);
+  box-shadow:
+    inset 2px 0 4px rgba(255,255,255,0.35),
+    inset -2px 0 6px rgba(0,0,0,0.35);
+}
+/* CONTACT SHADOW */
+.book-3d__shadow {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 3;
-  padding: 0.35rem 0.75rem;
+  left: 50%;
+  bottom: -22px;
+  width: 90%;
+  height: 32px;
+  transform: translate3d(-50%, 0, 0);
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 35%, transparent 70%);
+  filter: blur(14px);
+  pointer-events: none;
+  z-index: -1;
+}
+/* BADGE (hero) */
+.book-3d__badge {
+  position: absolute;
+  top: -12px;
+  right: -14px;
+  z-index: 5;
+  padding: 0.4rem 0.85rem;
   font-size: 0.625rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   color: var(--bone);
   background: var(--blood);
   border-radius: var(--radius-pill);
   font-weight: 700;
-  box-shadow: 0 8px 24px -6px var(--blood-glow);
+  box-shadow: 0 12px 30px -6px var(--blood-glow);
+  transform: translateZ(50px);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -594,37 +773,13 @@ img { max-width: 100%; display: block; }
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1400px;
+  padding: 2rem 0;
 }
-.book-feature__cover {
-  width: min(100%, 380px);
-  aspect-ratio: 2 / 3;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-  box-shadow:
-    0 40px 100px -20px rgba(0,0,0,0.85),
-    0 0 0 1px rgba(255,255,255,0.05);
-  transform-style: preserve-3d;
-  transition: transform 800ms var(--ease-out-expo),
-              box-shadow 800ms var(--ease-out-expo);
-  will-change: transform;
+.book-3d--feature {
+  --book-w: clamp(240px, 28vw, 320px);
+  --book-h: calc(var(--book-w) * 1.5);
+  --book-d: 44px;
 }
-.book-feature__cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.book-feature__cover::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, transparent 35%);
-  opacity: 0;
-  transition: opacity 600ms var(--ease-out-expo);
-  pointer-events: none;
-}
-.book-feature__cover:hover::after { opacity: 1; }
 
 .book-feature__new-badge {
   position: absolute;
@@ -1517,8 +1672,17 @@ img { max-width: 100%; display: block; }
 
   .hero { padding: 8rem var(--container-px) 4rem; min-height: auto; }
   .hero__container { grid-template-columns: 1fr; gap: 4rem; }
-  .hero__visual { height: 500px; max-width: 460px; margin: 0 auto; }
+  .hero__visual { height: 540px; max-width: 520px; margin: 0 auto; }
+  .hero__book-stack .book-3d--hero {
+    --book-w: 200px;
+    --book-d: 38px;
+  }
   .hero__stats { gap: 2rem; }
+
+  .book-3d--feature {
+    --book-w: 240px;
+    --book-d: 40px;
+  }
 
   .book-feature__inner,
   .book-feature--reverse .book-feature__inner {

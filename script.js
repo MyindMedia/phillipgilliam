@@ -149,45 +149,87 @@
     });
   });
 
-  // ── HERO BOOK STACK CURSOR PARALLAX ───────────────────
-  const heroVisual = document.getElementById('heroVisual');
-  const parallaxBooks = document.querySelectorAll('[data-parallax-depth]');
+  // ── 3D BOOK ROTATION (cursor + hover) ─────────────────
+  const books3d = document.querySelectorAll('[data-book-3d]');
 
-  if (heroVisual && parallaxBooks.length) {
-    let parallaxRaf = null;
+  books3d.forEach((book) => {
+    const inner = book.querySelector('.book-3d__inner');
+    if (!inner) return;
+
+    const baseRX = 6;   // resting rotateX
+    const baseRY = -28; // resting rotateY
+    const MAX_DELTA_X = 10;
+    const MAX_DELTA_Y = 14;
+
+    let raf = null;
     let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
 
-    function applyParallax() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-
-      parallaxBooks.forEach((book) => {
-        const depth = parseFloat(book.dataset.parallaxDepth) || 1;
-        const baseTransform = book.classList.contains('hero__book--front')
-          ? 'rotateY(-8deg) rotateX(2deg)'
-          : 'rotateY(10deg) rotateX(2deg)';
-        book.style.transform =
-          `translate3d(${currentX * depth * 18}px, ${currentY * depth * 18}px, 0) ${baseTransform}`;
-      });
-
-      if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
-        parallaxRaf = requestAnimationFrame(applyParallax);
+    function apply() {
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+      inner.style.transform =
+        `rotateX(${baseRX + currentX}deg) rotateY(${baseRY + currentY}deg)`;
+      if (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01) {
+        raf = requestAnimationFrame(apply);
       } else {
-        parallaxRaf = null;
+        raf = null;
+      }
+    }
+
+    book.addEventListener('mousemove', (e) => {
+      const rect = book.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      targetY = px * MAX_DELTA_Y * 2;      // horizontal mouse → rotateY
+      targetX = -py * MAX_DELTA_X * 2;     // vertical mouse → rotateX
+      inner.style.transition = 'transform 200ms var(--ease-out-expo)';
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
+
+    book.addEventListener('mouseleave', () => {
+      targetX = 0;
+      targetY = 0;
+      inner.style.transition = 'transform 900ms var(--ease-out-expo)';
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
+  });
+
+  // ── HERO GROUP CURSOR DRIFT ───────────────────────────
+  const heroVisual = document.getElementById('heroVisual');
+  const parallaxStacks = document.querySelectorAll('[data-parallax-depth]');
+
+  if (heroVisual && parallaxStacks.length) {
+    let heroRaf = null;
+    let htx = 0, hty = 0, hcx = 0, hcy = 0;
+    const baseTransforms = new Map();
+    parallaxStacks.forEach((el) => { baseTransforms.set(el, el.style.transform || ''); });
+
+    function applyHero() {
+      hcx += (htx - hcx) * 0.08;
+      hcy += (hty - hcy) * 0.08;
+      parallaxStacks.forEach((el) => {
+        const depth = parseFloat(el.dataset.parallaxDepth) || 1;
+        const base = baseTransforms.get(el);
+        el.style.transform = `${base} translate3d(${hcx * depth * 14}px, ${hcy * depth * 14}px, 0)`;
+      });
+      if (Math.abs(htx - hcx) > 0.001 || Math.abs(hty - hcy) > 0.001) {
+        heroRaf = requestAnimationFrame(applyHero);
+      } else {
+        heroRaf = null;
       }
     }
 
     heroVisual.addEventListener('mousemove', (e) => {
       const rect = heroVisual.getBoundingClientRect();
-      targetX = (e.clientX - rect.left) / rect.width - 0.5;
-      targetY = (e.clientY - rect.top) / rect.height - 0.5;
-      if (!parallaxRaf) parallaxRaf = requestAnimationFrame(applyParallax);
+      htx = (e.clientX - rect.left) / rect.width - 0.5;
+      hty = (e.clientY - rect.top) / rect.height - 0.5;
+      if (!heroRaf) heroRaf = requestAnimationFrame(applyHero);
     });
 
     heroVisual.addEventListener('mouseleave', () => {
-      targetX = 0;
-      targetY = 0;
-      if (!parallaxRaf) parallaxRaf = requestAnimationFrame(applyParallax);
+      htx = 0;
+      hty = 0;
+      if (!heroRaf) heroRaf = requestAnimationFrame(applyHero);
     });
   }
 })();

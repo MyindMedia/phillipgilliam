@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   PHILLIP GILLIAM — AUTHOR OF THE JOHN TALION MYSTERIES
+   PHILLIP GILLIAM, AUTHOR OF THE JOHN TALION MYSTERIES
    Modern noir · Dark red & ink black · Editorial · Cinematic motion
    ═══════════════════════════════════════════════════════════ */
 
@@ -216,7 +216,7 @@ img { max-width: 100%; display: block; }
 .excerpt__grid > .reveal-element:nth-child(1) { transition-delay: 80ms; }
 .excerpt__grid > .reveal-element:nth-child(2) { transition-delay: 220ms; }
 
-/* parallax wrapper — JS sets --py per scroll frame */
+/* parallax wrapper, JS sets --py per scroll frame */
 [data-parallax-y] {
   will-change: transform;
   transform: translate3d(0, var(--py, 0px), 0);
@@ -949,7 +949,7 @@ img { max-width: 100%; display: block; }
   margin-top: 1rem;
 }
 
-/* Book feature — Coming Soon variant (Vengeance Is Mine) */
+/* Book feature, Coming Soon variant (Vengeance Is Mine) */
 .book-feature--coming .book-feature__shell--coming {
   background:
     radial-gradient(60% 80% at 50% 0%, rgba(185,28,28,0.14) 0%, transparent 60%),

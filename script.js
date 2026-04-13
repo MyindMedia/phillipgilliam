@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   PHILLIP GILLIAM — AUTHOR SITE
+   PHILLIP GILLIAM, AUTHOR SITE
    Reveal · Nav · Menu · Magnetic · Tilt · Hero parallax · Progress
    ═══════════════════════════════════════════════════════════ */
 
@@ -7,6 +7,36 @@
   'use strict';
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── MOTION ONE INTEGRATION ────────────────────────────
+  // window.Motion is loaded from the module import in index.html.
+  // We progressively enhance once it's ready; the site still works without it.
+  function withMotion(fn) {
+    if (window.Motion) { fn(window.Motion); return; }
+    window.addEventListener('motion:ready', () => fn(window.Motion), { once: true });
+  }
+
+  withMotion(({ animate, spring, stagger, inView }) => {
+    if (prefersReducedMotion) return;
+
+    // Spring-eased pull on the pull-quote when it enters view.
+    inView('.pull-quote__text', (info) => {
+      animate(
+        info.target,
+        { letterSpacing: ['0.02em', '-0.005em'], opacity: [0.6, 1] },
+        { duration: 1.1, easing: spring({ stiffness: 90, damping: 18 }) }
+      );
+    }, { amount: 0.6 });
+
+    // Spring-stagger on the news list when it enters view.
+    inView('.news', () => {
+      animate(
+        '.news-item',
+        { opacity: [0, 1], y: [24, 0] },
+        { delay: stagger(0.08), duration: 0.7, easing: spring({ stiffness: 120, damping: 20 }) }
+      );
+    }, { amount: 0.2 });
+  });
 
   // ── SCROLL REVEAL ─────────────────────────────────────
   const revealElements = document.querySelectorAll('.reveal-element, .word-reveal');

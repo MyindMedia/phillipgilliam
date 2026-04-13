@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phillip Gilliam — Author of the John Talion Mysteries</title>
+  <meta name="description" content="Official site of Phillip Gilliam, author of the John Talion Mysteries: Black Leather Apron and At All Times. Hard-nosed Baltimore noir thrillers about murder, lust, loyalty, and the price of truth.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/light/style.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav__pill">
+      <a href="#hero" class="nav__logo" data-magnetic>P<span class="nav__logo-dot">.</span>Gilliam</a>
+      <div class="nav__links">
+        <a href="#books" class="nav__link">Books</a>
+        <a href="#excerpt" class="nav__link">Excerpt</a>
+        <a href="#reviews" class="nav__link">Reviews</a>
+        <a href="#about" class="nav__link">About</a>
+        <a href="#film" class="nav__link">Film</a>
+        <a href="#news" class="nav__link">News</a>
+        <a href="#contact" class="nav__link nav__link--cta" data-magnetic>Contact</a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+        <span class="nav__hamburger-line"></span>
+        <span class="nav__hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__inner">
+      <a href="#books" class="mobile-menu__link">Books</a>
+      <a href="#excerpt" class="mobile-menu__link">Excerpt</a>
+      <a href="#reviews" class="mobile-menu__link">Reviews</a>
+      <a href="#about" class="mobile-menu__link">About</a>
+      <a href="#film" class="mobile-menu__link">Film</a>
+      <a href="#news" class="mobile-menu__link">News</a>
+      <a href="#contact" class="mobile-menu__link">Contact</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- HERO                                                -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__mesh" aria-hidden="true"></div>
+    <div class="hero__container">
+      <div class="hero__content">
+        <div class="hero__eyebrow reveal-element">
+          <span class="eyebrow-pill">The John Talion Mysteries</span>
+        </div>
+        <h1 class="hero__title">
+          <span class="word-reveal"><span>Justice</span></span>
+          <span class="word-reveal"><span>is&nbsp;optional.</span></span>
+          <em class="word-reveal"><span>Vengeance</span></em>
+          <span class="word-reveal"><span>never&nbsp;sleeps.</span></span>
+        </h1>
+        <p class="hero__subtitle reveal-element">
+          Phillip Gilliam writes hard-nosed Baltimore noir — stories of murder,
+          loyalty, lust, and the price of truth. Meet ex-homicide detective
+          John Talion in two unrelenting novels, with a third on the way.
+        </p>
+        <div class="hero__actions reveal-element">
+          <a href="#books" class="btn btn--primary" data-magnetic>
+            <span>Explore the Books</span>
+            <span class="btn__icon-wrap">
+              <i class="ph-light ph-arrow-down-right"></i>
+            </span>
+          </a>
+          <a href="#excerpt" class="btn btn--ghost" data-magnetic>Read an Excerpt</a>
+        </div>
+        <div class="hero__stats reveal-element">
+          <div class="hero__stat">
+            <span class="hero__stat-num">3</span>
+            <span class="hero__stat-label">Novels · The Trilogy</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">1</span>
+            <span class="hero__stat-label">Detective</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">∞</span>
+            <span class="hero__stat-label">Shadows</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual" id="heroVisual">
+        <div class="hero__book-stack" data-parallax-stack>
+          <figure class="hero__book hero__book--front" data-parallax-depth="1.3">
+            <span class="hero__book-badge">New Release</span>
+            <img src="images/at-all-times-cover.png" alt="At All Times — A John Talion Mystery by Phillip Gilliam" loading="eager">
+            <figcaption>At All Times</figcaption>
+          </figure>
+          <figure class="hero__book hero__book--back" data-parallax-depth="0.6">
+            <img src="images/black-leather-apron-cover.jpg" alt="Black Leather Apron — A John Talion Mystery by Phillip Gilliam" loading="eager">
+            <figcaption>Black Leather Apron</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <div class="grain-overlay"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- MARQUEE                                             -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-strip__track">
+      <span>Murder</span><span class="marquee-strip__dot"></span>
+      <span>Greed</span><span class="marquee-strip__dot"></span>
+      <span>Lust</span><span class="marquee-strip__dot"></span>
+      <span>Loyalty</span><span class="marquee-strip__dot"></span>
+      <span>Revenge</span><span class="marquee-strip__dot"></span>
+      <span>Insanity</span><span class="marquee-strip__dot"></span>
+      <span>Murder</span><span class="marquee-strip__dot"></span>
+      <span>Greed</span><span class="marquee-strip__dot"></span>
+      <span>Lust</span><span class="marquee-strip__dot"></span>
+      <span>Loyalty</span><span class="marquee-strip__dot"></span>
+      <span>Revenge</span><span class="marquee-strip__dot"></span>
+      <span>Insanity</span><span class="marquee-strip__dot"></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- BOOKS                                               -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="books" id="books">
+    <div class="books__container">
+      <div class="section-header reveal-element">
+        <span class="eyebrow-pill">The Collection</span>
+        <h2 class="section-title">Two novels.<br>One dark Baltimore.</h2>
+      </div>
+
+      <!-- AT ALL TIMES -->
+      <article class="book-feature reveal-element" id="book-aat">
+        <div class="book-feature__shell">
+          <div class="book-feature__inner">
+            <div class="book-feature__visual">
+              <div class="book-feature__cover" data-tilt>
+                <img src="images/at-all-times-cover.png" alt="At All Times by Phillip Gilliam">
+              </div>
+              <div class="book-feature__new-badge"><span>New Release</span></div>
+            </div>
+            <div class="book-feature__details">
+              <p class="book-feature__series">A John Talion Mystery · Book Two</p>
+              <h3 class="book-feature__title">At&nbsp;All&nbsp;Times</h3>
+              <p class="book-feature__tagline">"Lust, like loyalty, can be deadly."</p>
+              <p class="book-feature__genre">
+                <i class="ph-light ph-bookmark-simple"></i> Crime · Noir Thriller
+              </p>
+              <p class="book-feature__description">
+                Ex-homicide detective John Talion finds the battered, knee-capped
+                body of his childhood friend — ex-boxer Yaqui Galindez — dumped
+                outside his office. The murder is brutal, deliberate, and personal,
+                left with a photograph of a priceless synthetic diamond, the
+                <em>Estrella de la Muerte</em>, and a plea for help.
+              </p>
+              <p class="book-feature__description">
+                Pulled back into a city that no longer wants him, Talion follows
+                a violent web linking a tortured gemologist, a fixed championship
+                fight, dirty cops, and a young mother whose secret life drew her
+                too close to the wolves. As bodies accumulate, the message
+                sharpens: he is no longer investigating the conspiracy — he's
+                part of it.
+              </p>
+              <div class="book-feature__meta">
+                <div class="book-feature__meta-item">
+                  <span class="book-feature__meta-label">Status</span>
+                  <span class="book-feature__meta-value">Available Now</span>
+                </div>
+                <div class="book-feature__meta-item">
+                  <span class="book-feature__meta-label">ISBN</span>
+                  <span class="book-feature__meta-value">979-8-2957-6050-1</span>
+                </div>
+                <div class="book-feature__meta-item">
+                  <span class="book-feature__meta-label">Setting</span>
+                  <span class="book-feature__meta-value">Baltimore, MD</span>
+                </div>
+              </div>
+              <div class="book-feature__actions">
+                <a href="#contact" class="btn btn--primary" data-magnetic>
+                  <span>Order Your Copy</span>
+                  <span class="btn__icon-wrap"><i class="ph-light ph-arrow-up-right"></i></span>
+                </a>
+                <a href="#excerpt" class="btn btn--ghost" data-magnetic>Read an Excerpt</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- BLACK LEATHER APRON -->
+      <article class="book-feature book-feature--reverse reveal-element" id="book-bla">
+        <div class="book-feature__shell">
+          <div class="book-feature__inner">
+            <div class="book-feature__visual">
+              <div class="book-feature__cover" data-tilt>
+                <img src="images/black-leather-apron-cover.jpg" alt="Black Leather Apron by Phillip Gilliam">
+              </div>
+            </div>
+            <div class="book-feature__details">
+              <p class="book-feature__series">A John Talion Mystery · Book One</p>
+              <h3 class="book-feature__title">Black&nbsp;Leather&nbsp;Apron</h3>
+              <p class="book-feature__tagline">"A suffocating tale of murder, greed, lust, revenge, and insanity."</p>
+              <p class="book-feature__genre">
+                <i class="ph-light ph-knife"></i> Crime · Mystery · Thriller
+              </p>
+              <p class="book-feature__description">
+                Ex-homicide detective John Talion is hired to investigate the
+                brutal murder of Sharon Bowling, daughter of a prominent Baltimore
+                family. What begins as a private case unravels into a string of
+                killings with identical signatures, cryptic messages at every
+                scene, and a chilling thread that stretches all the way back to
+                Whitechapel — and Jack the Ripper himself.
+              </p>
+              <p class="book-feature__description">
+                Talion's investigation drags him through the city's old money,
+                its quiet corruption, and the mind of a killer who believes in
+                the principle of retributive justice. By the time the pattern
+                snaps into focus, the only question left is whether Talion can
+                survive recognizing it.
+              </p>
+              <div class="book-feature__meta">
+                <div class="book-feature__meta-item">
+                  <span class="book-feature__meta-label">Status</span>
+                  <span class="book-feature__meta-value">Available Now</span>
+                </div>
+                <div class="book-feature__meta-item">
+                  <span class="book-feature__meta-label">ISBN</span>
+                  <span class="book-feature__meta-value">979-8-2957-6060-0</span>
+                </div>
+                <div class="book-feature__meta-item">
+                  <span class="book-feature__meta-label">Protagonist</span>
+                  <span class="book-feature__meta-value">John Talion, P.I.</span>
+                </div>
+              </div>
+              <div class="book-feature__actions">
+                <a href="#contact" class="btn btn--primary" data-magnetic>
+                  <span>Order Your Copy</span>
+                  <span class="btn__icon-wrap"><i class="ph-light ph-arrow-up-right"></i></span>
+                </a>
+                <a href="https://www.facebook.com/blackleatherapronnovel/" class="btn btn--ghost" target="_blank" rel="noopener" data-magnetic>
+                  <i class="ph-light ph-facebook-logo"></i> Follow on Facebook
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Coming soon: Vengeance Is Mine -->
+      <article class="book-feature book-feature--coming reveal-element">
+        <div class="book-feature__shell book-feature__shell--coming">
+          <div class="book-feature__coming-inner">
+            <span class="eyebrow-pill">Coming Soon</span>
+            <h3 class="book-feature__coming-title">Vengeance&nbsp;Is&nbsp;Mine</h3>
+            <p class="book-feature__coming-text">
+              The third John Talion Mystery — completing the trilogy that began
+              with <em>Black Leather Apron</em> and <em>At All Times</em>.
+              Currently in development.
+            </p>
+            <p class="book-feature__series">A John Talion Mystery · Book Three</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SERIES                                              -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="series">
+    <div class="series__container">
+      <div class="section-header reveal-element">
+        <span class="eyebrow-pill">The Detective</span>
+        <h2 class="section-title">Meet John Talion.</h2>
+        <p class="section-lede reveal-element">
+          Once a Baltimore homicide detective. Now a man the city would rather
+          forget. Talion takes the cases that pay in bruises and the truths
+          that pay in blood.
+        </p>
+      </div>
+      <div class="series__grid">
+        <div class="series__card reveal-element">
+          <div class="series__card-num">01</div>
+          <h3 class="series__card-title">Hard-Nosed</h3>
+          <p>A protagonist who walks straight at the consequences instead of around them.</p>
+        </div>
+        <div class="series__card reveal-element">
+          <div class="series__card-num">02</div>
+          <h3 class="series__card-title">Baltimore Noir</h3>
+          <p>A city where power masquerades as respectability, and justice bends out of sight.</p>
+        </div>
+        <div class="series__card reveal-element">
+          <div class="series__card-num">03</div>
+          <h3 class="series__card-title">Real Stakes</h3>
+          <p>Every choice costs Talion something — and the puppeteers never reveal themselves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- EXCERPT                                             -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="excerpt" id="excerpt">
+    <div class="excerpt__container">
+      <div class="section-header reveal-element">
+        <span class="eyebrow-pill">The Reading</span>
+        <h2 class="section-title">A first look.</h2>
+        <p class="section-lede reveal-element">
+          Two opening chapters from <em>Black Leather Apron</em>. The first
+          John Talion Mystery doesn't wait to draw blood.
+        </p>
+      </div>
+      <div class="excerpt__grid">
+        <article class="excerpt__card reveal-element">
+          <div class="excerpt__card-head">
+            <span class="excerpt__chapter">Chapter 01</span>
+            <span class="excerpt__marker"></span>
+          </div>
+          <h3 class="excerpt__title">The Condominium</h3>
+          <p class="excerpt__body">
+            A Baltimore high-rise. A woman named Sharon meets her lover in
+            secret while, down on the street, her brother-in-law Jason Vaccorro
+            is murdered in broad view. The chapter closes at Jason's funeral,
+            where his widow Samantha is comforted by the same sister whose
+            betrayal set the first domino in motion.
+          </p>
+          <div class="excerpt__foot">
+            <span class="excerpt__foot-label">Opens with</span>
+            <span class="excerpt__foot-value">Infidelity · Violence</span>
+          </div>
+        </article>
+
+        <article class="excerpt__card reveal-element">
+          <div class="excerpt__card-head">
+            <span class="excerpt__chapter">Chapter 02</span>
+            <span class="excerpt__marker"></span>
+          </div>
+          <h3 class="excerpt__title">Three Months Later</h3>
+          <p class="excerpt__body">
+            John Talion, thirty-eight years old, ex-homicide, now working
+            investigations. A surveillance job in a city park turns into a
+            witness statement when Talion watches a woman murdered in a
+            nearby alley with surgical precision — one finger taken, the
+            rest of her left where she fell. The pattern begins.
+          </p>
+          <div class="excerpt__foot">
+            <span class="excerpt__foot-label">Introduces</span>
+            <span class="excerpt__foot-value">John Talion, P.I.</span>
+          </div>
+        </article>
+      </div>
+      <div class="excerpt__cta reveal-element">
+        <a href="#contact" class="btn btn--primary" data-magnetic>
+          <span>Request the Full Excerpt</span>
+          <span class="btn__icon-wrap"><i class="ph-light ph-arrow-up-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- PULL QUOTE                                          -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="pull-quote">
+    <div class="pull-quote__container reveal-element">
+      <blockquote class="pull-quote__text">
+        "Justice is optional. Power is invisible. Vengeance is never satisfied."
+      </blockquote>
+      <cite class="pull-quote__cite">
+        <span class="pull-quote__line"></span>
+        At All Times
+      </cite>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- REVIEWS                                             -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="reviews" id="reviews">
+    <div class="reviews__container">
+      <div class="section-header reveal-element">
+        <span class="eyebrow-pill">From the Readers</span>
+        <h2 class="section-title">What they're<br>saying.</h2>
+      </div>
+      <div class="reviews__grid">
+        <figure class="review-card reveal-element">
+          <div class="review-card__stars" aria-label="5 stars">
+            <i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i>
+          </div>
+          <blockquote>"The Jack the Ripper twist was GENIUS!!! Looking forward to the movie."</blockquote>
+          <figcaption>— Jeri&nbsp;J.</figcaption>
+        </figure>
+
+        <figure class="review-card reveal-element">
+          <div class="review-card__stars" aria-label="5 stars">
+            <i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i>
+          </div>
+          <blockquote>"Black Leather Apron was a great murder mystery read! It kept me on the edge of my seat anticipating what was going to happen next."</blockquote>
+          <figcaption>— Rachel&nbsp;C.</figcaption>
+        </figure>
+
+        <figure class="review-card reveal-element">
+          <div class="review-card__stars" aria-label="5 stars">
+            <i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i>
+          </div>
+          <blockquote>"A suspense-filled murder mystery that unfolds with perfect timing."</blockquote>
+          <figcaption>— C.&nbsp;Jackson</figcaption>
+        </figure>
+
+        <figure class="review-card reveal-element">
+          <div class="review-card__stars" aria-label="5 stars">
+            <i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i>
+          </div>
+          <blockquote>"The story line holds your attention from start to finish. Mr. Gilliam uses language that is easy to comprehend yet creates vivid images."</blockquote>
+          <figcaption>— R.&nbsp;Marable</figcaption>
+        </figure>
+
+        <figure class="review-card reveal-element">
+          <div class="review-card__stars" aria-label="5 stars">
+            <i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i>
+          </div>
+          <blockquote>"Very different than other books I've read. Kept me on my toes until the very end."</blockquote>
+          <figcaption>— Noire&nbsp;Lover</figcaption>
+        </figure>
+
+        <figure class="review-card reveal-element">
+          <div class="review-card__stars" aria-label="5 stars">
+            <i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i><i class="ph-light ph-star-fill"></i>
+          </div>
+          <blockquote>"It takes a lot to get and keep my attention. Gilliam has my attention."</blockquote>
+          <figcaption>— N.&nbsp;Franklin</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- ABOUT                                               -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="about__container">
+      <div class="about__content reveal-element">
+        <span class="eyebrow-pill">The Author</span>
+        <h2 class="section-title">Phillip Gilliam.</h2>
+        <div class="about__text">
+          <p>
+            Phillip Gilliam was born in Norfolk, Virginia, and earned a
+            Bachelor of Science in Physics and Engineering from Morgan State
+            University in 1981. He spent four decades as a communications
+            engineer at Verizon, earning two U.S. patents along the way —
+            <strong>5,957,878</strong> for custom biomechanics compression
+            garments, and <strong>7,803,092</strong> for an exercise device
+            he calls the <em>Sisyphean Chamber</em>.
+          </p>
+          <p>
+            Gilliam fell for film noir young — Bogart, Cagney, Brando —
+            and the records that played underneath those films: Sinatra,
+            Ellington, Billie Holiday. You can hear all of it in the
+            cadence of the John Talion Mysteries.
+          </p>
+          <p>
+            <em>Black Leather Apron</em> was born from a research trip to
+            Louie's Book Store, where Gilliam went chasing Jack the Ripper
+            and came back with a novel. He walked the alleys of Baltimore's
+            Fells Point at night with a camera, mapping them onto the
+            1888 Whitechapel crimes, until the city itself became a
+            character.
+          </p>
+          <p>
+            <em>At All Times</em> continues the series, and a third Talion
+            novel — <em>Vengeance Is Mine</em> — is in the works. A fourth
+            story, centered on an inventor called The Sisyphean Chamber,
+            is planned beyond the trilogy.
+          </p>
+        </div>
+        <div class="about__facts">
+          <div class="about__fact">
+            <span class="about__fact-num">1981</span>
+            <span class="about__fact-label">BS Physics &amp; Engineering · Morgan State</span>
+          </div>
+          <div class="about__fact">
+            <span class="about__fact-num">2</span>
+            <span class="about__fact-label">U.S. Patents</span>
+          </div>
+          <div class="about__fact">
+            <span class="about__fact-num">40+</span>
+            <span class="about__fact-label">Years · Verizon Comms Engineer</span>
+          </div>
+        </div>
+      </div>
+      <div class="about__visual reveal-element">
+        <div class="about__portrait-shell" data-tilt>
+          <div class="about__portrait">
+            <img src="images/phillip-gilliam-headshot.png" alt="Phillip Gilliam, author">
+            <div class="about__portrait-meta">
+              <span class="about__portrait-name">Phillip Gilliam</span>
+              <span class="about__portrait-location">
+                <i class="ph-light ph-map-pin"></i> Fayetteville, GA
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- FILM                                                -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="film" id="film">
+    <div class="film__container">
+      <div class="section-header reveal-element">
+        <span class="eyebrow-pill">The Film</span>
+        <h2 class="section-title">Black Leather Apron,<br>on screen.</h2>
+        <p class="section-lede reveal-element">
+          A feature film adaptation based on the erotic crime story and
+          screenplay by Phillip Gilliam — produced under <strong>Phillip
+          Noire, LLC</strong>. The package is complete and the pitch is live.
+        </p>
+      </div>
+      <div class="film__grid">
+        <div class="film__col reveal-element">
+          <h3 class="film__subtitle">Package Complete</h3>
+          <ul class="film__list">
+            <li><i class="ph-light ph-file-text"></i> One-Page Summary</li>
+            <li><i class="ph-light ph-presentation"></i> Pitch Deck</li>
+            <li><i class="ph-light ph-film-reel"></i> Sizzle Reel</li>
+            <li><i class="ph-light ph-book-open"></i> Treatment</li>
+            <li><i class="ph-light ph-scroll"></i> Screenplay (WGAE Registered)</li>
+            <li><i class="ph-light ph-currency-dollar"></i> Full Union Budget</li>
+          </ul>
+        </div>
+        <div class="film__col reveal-element">
+          <h3 class="film__subtitle">Now Seeking</h3>
+          <p class="film__text">
+            Producers for upfront funding, and — most importantly —
+            back-end distribution partners. Positioned as a proof-of-concept
+            for the feature, with the trilogy (<em>Black Leather Apron</em>,
+            <em>At All Times</em>, <em>Vengeance Is Mine</em>) mapping a
+            three-film roadmap.
+          </p>
+          <a href="#contact" class="btn btn--primary" data-magnetic>
+            <span>Inquire About the Film</span>
+            <span class="btn__icon-wrap"><i class="ph-light ph-arrow-up-right"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- NEWS / PRESS                                        -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="news" id="news">
+    <div class="news__container">
+      <div class="section-header reveal-element">
+        <span class="eyebrow-pill">In the Press</span>
+        <h2 class="section-title">News &amp;<br>Appearances.</h2>
+      </div>
+      <div class="news__list">
+
+        <article class="news-item reveal-element">
+          <div class="news-item__date">
+            <span class="news-item__date-day">16</span>
+            <span class="news-item__date-month">Jun</span>
+            <span class="news-item__date-year">2022</span>
+          </div>
+          <div class="news-item__body">
+            <span class="news-item__type"><i class="ph-light ph-video-camera"></i> Video Interview</span>
+            <h3 class="news-item__title">Art Out Loud Academy — feat. Phillip Gilliam</h3>
+            <p class="news-item__text">Hosted by LadyVee DaPoet. Gilliam joins the Art Out Loud Academy series to discuss <em>Black Leather Apron</em>, his noir influences, and the craft of hard-boiled crime fiction.</p>
+          </div>
+          <div class="news-item__arrow">
+            <i class="ph-light ph-arrow-up-right"></i>
+          </div>
+        </article>
+
+        <article class="news-item reveal-element">
+          <div class="news-item__date">
+            <span class="news-item__date-day">05</span>
+            <span class="news-item__date-month">Aug</span>
+            <span class="news-item__date-year">2019</span>
+          </div>
+          <div class="news-item__body">
+            <span class="news-item__type"><i class="ph-light ph-microphone-stage"></i> Radio Interview</span>
+            <h3 class="news-item__title">Blog Talk Radio · FRESHH with The Young Man Nük</h3>
+            <p class="news-item__text">Phillip Gilliam talks <em>Black Leather Apron</em> with host The Young Man Nük on Blog Talk Radio's FRESHH program, covering the novel's origins, the Talion character, and the Baltimore setting.</p>
+          </div>
+          <div class="news-item__arrow">
+            <i class="ph-light ph-arrow-up-right"></i>
+          </div>
+        </article>
+
+        <article class="news-item reveal-element">
+          <div class="news-item__date">
+            <span class="news-item__date-day">09</span>
+            <span class="news-item__date-month">May</span>
+            <span class="news-item__date-year">2018</span>
+          </div>
+          <div class="news-item__body">
+            <span class="news-item__type"><i class="ph-light ph-newspaper"></i> Feature</span>
+            <h3 class="news-item__title">Gritty New Crime Novel: Black Leather Apron</h3>
+            <p class="news-item__text">"Black Leather Apron is the gritty new crime novel pitting hard-boiled private eye John Talion against the vicious serial killer who's murdering, raping and disemboweling his way thru the streets of Baltimore."</p>
+          </div>
+          <div class="news-item__arrow">
+            <i class="ph-light ph-arrow-up-right"></i>
+          </div>
+        </article>
+
+        <article class="news-item reveal-element">
+          <a href="https://www.facebook.com/blackleatherapronnovel/" target="_blank" rel="noopener" class="news-item__link"></a>
+          <div class="news-item__date">
+            <span class="news-item__date-day">FB</span>
+            <span class="news-item__date-month">Live</span>
+            <span class="news-item__date-year">Now</span>
+          </div>
+          <div class="news-item__body">
+            <span class="news-item__type"><i class="ph-light ph-facebook-logo"></i> Social</span>
+            <h3 class="news-item__title">Black Leather Apron · Facebook</h3>
+            <p class="news-item__text">Follow the official Black Leather Apron novel page on Facebook for updates, behind-the-scenes, and news on the trilogy and film development.</p>
+          </div>
+          <div class="news-item__arrow">
+            <i class="ph-light ph-arrow-up-right"></i>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- CONTACT                                             -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="contact__container reveal-element">
+      <div class="contact__content">
+        <span class="eyebrow-pill eyebrow-pill--light">Connect</span>
+        <h2 class="contact__title">Step into the<br>shadows with Talion.</h2>
+        <p class="contact__text">
+          Readers, reviewers, book clubs, producers, and media — Phillip
+          would love to hear from you. Whether you're after a copy of a
+          book, a full excerpt, or the film package for <em>Black Leather
+          Apron</em>, send a note.
+        </p>
+        <form class="contact__form" onsubmit="event.preventDefault(); this.querySelector('.contact__form-note').textContent='Thanks — this form is a placeholder. Wire it to your preferred inbox or form service.';">
+          <div class="contact__form-row">
+            <label class="contact__field">
+              <span>Name</span>
+              <input type="text" name="name" required autocomplete="name">
+            </label>
+            <label class="contact__field">
+              <span>Email</span>
+              <input type="email" name="email" required autocomplete="email">
+            </label>
+          </div>
+          <label class="contact__field">
+            <span>Message</span>
+            <textarea name="message" rows="4" required placeholder="Tell Phillip what you're after."></textarea>
+          </label>
+          <div class="contact__actions">
+            <button type="submit" class="btn btn--light" data-magnetic>
+              <span>Send Message</span>
+              <span class="btn__icon-wrap btn__icon-wrap--dark"><i class="ph-light ph-arrow-up-right"></i></span>
+            </button>
+            <a href="https://www.facebook.com/blackleatherapronnovel/" target="_blank" rel="noopener" class="btn btn--ghost btn--ghost-on-dark" data-magnetic>
+              <i class="ph-light ph-facebook-logo"></i> Facebook
+            </a>
+          </div>
+          <p class="contact__form-note"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__top">
+        <a href="#hero" class="footer__logo">P<span class="footer__logo-dot">.</span>Gilliam</a>
+        <div class="footer__links">
+          <a href="#books">Books</a>
+          <a href="#excerpt">Excerpt</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#about">About</a>
+          <a href="#film">Film</a>
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Phillip Gilliam. All rights reserved.</p>
+        <p class="footer__credit">The John Talion Mysteries · Phillip Noire, LLC</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

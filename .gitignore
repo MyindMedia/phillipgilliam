@@ -1,0 +1,13 @@
+.DS_Store
+Icon?
+Icon
+
+.agents/
+.claude/
+skills/
+skills-lock.json
+
+node_modules/
+*.log
+.env
+.env.*

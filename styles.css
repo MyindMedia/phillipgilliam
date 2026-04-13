@@ -135,6 +135,8 @@ img { max-width: 100%; display: block; }
 .word-reveal {
   display: block;
   overflow: hidden;
+  padding: 0.05em 0.18em;
+  margin: -0.05em -0.18em;
 }
 .word-reveal > span {
   display: inline-block;
@@ -149,6 +151,82 @@ img { max-width: 100%; display: block; }
 .word-reveal:nth-of-type(2) > span { transition-delay: 180ms; }
 .word-reveal:nth-of-type(3) > span { transition-delay: 280ms; }
 .word-reveal:nth-of-type(4) > span { transition-delay: 380ms; }
+
+/* ── REVEAL VARIANTS ─────────────────────────────────────
+   Add data-reveal="<variant>" to .reveal-element to change style.
+   Combine with data-reveal-delay="100|200|300|400|500" for stagger.
+*/
+.reveal-element[data-reveal="left"]   { transform: translate3d(-48px, 0, 0); }
+.reveal-element[data-reveal="right"]  { transform: translate3d(48px, 0, 0); }
+.reveal-element[data-reveal="scale"]  { transform: scale(0.94) translate3d(0, 18px, 0); }
+.reveal-element[data-reveal="blur"]   { filter: blur(14px); transform: translate3d(0, 18px, 0); }
+.reveal-element[data-reveal="rise"]   { transform: translate3d(0, 64px, 0); }
+.reveal-element[data-reveal="flip"]   {
+  transform: perspective(900px) rotateX(18deg) translate3d(0, 28px, 0);
+  transform-origin: center bottom;
+}
+
+.reveal-element[data-reveal="left"].visible,
+.reveal-element[data-reveal="right"].visible,
+.reveal-element[data-reveal="rise"].visible,
+.reveal-element[data-reveal="flip"].visible {
+  transform: translate3d(0, 0, 0);
+}
+.reveal-element[data-reveal="scale"].visible {
+  transform: scale(1) translate3d(0, 0, 0);
+}
+.reveal-element[data-reveal="blur"].visible {
+  filter: blur(0);
+  transform: translate3d(0, 0, 0);
+}
+.reveal-element[data-reveal="flip"] {
+  transition: opacity 1100ms var(--ease-out-expo),
+              transform 1100ms var(--ease-out-expo);
+}
+.reveal-element[data-reveal="blur"] {
+  transition: opacity 1200ms var(--ease-out-expo),
+              transform 1200ms var(--ease-out-expo),
+              filter 1200ms var(--ease-out-expo);
+}
+
+.reveal-element[data-reveal-delay="100"] { transition-delay: 100ms; }
+.reveal-element[data-reveal-delay="200"] { transition-delay: 200ms; }
+.reveal-element[data-reveal-delay="250"] { transition-delay: 250ms; }
+.reveal-element[data-reveal-delay="300"] { transition-delay: 300ms; }
+.reveal-element[data-reveal-delay="400"] { transition-delay: 400ms; }
+.reveal-element[data-reveal-delay="500"] { transition-delay: 500ms; }
+.reveal-element[data-reveal-delay="600"] { transition-delay: 600ms; }
+
+/* Auto-stagger for repeating grids */
+.reviews__grid > .reveal-element:nth-child(1) { transition-delay: 0ms; }
+.reviews__grid > .reveal-element:nth-child(2) { transition-delay: 120ms; }
+.reviews__grid > .reveal-element:nth-child(3) { transition-delay: 240ms; }
+.reviews__grid > .reveal-element:nth-child(4) { transition-delay: 60ms; }
+.reviews__grid > .reveal-element:nth-child(5) { transition-delay: 180ms; }
+.reviews__grid > .reveal-element:nth-child(6) { transition-delay: 300ms; }
+
+.news__list > .reveal-element:nth-child(odd)  { transform: translate3d(-48px, 0, 0); }
+.news__list > .reveal-element:nth-child(even) { transform: translate3d(48px, 0, 0); }
+.news__list > .reveal-element.visible { transform: translate3d(0, 0, 0); }
+.news__list > .reveal-element:nth-child(1) { transition-delay: 0ms; }
+.news__list > .reveal-element:nth-child(2) { transition-delay: 100ms; }
+.news__list > .reveal-element:nth-child(3) { transition-delay: 200ms; }
+.news__list > .reveal-element:nth-child(4) { transition-delay: 300ms; }
+
+.excerpt__grid > .reveal-element:nth-child(1) { transition-delay: 80ms; }
+.excerpt__grid > .reveal-element:nth-child(2) { transition-delay: 220ms; }
+
+/* parallax wrapper — JS sets --py per scroll frame */
+[data-parallax-y] {
+  will-change: transform;
+  transform: translate3d(0, var(--py, 0px), 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-element,
+  .reveal-element[data-reveal] { transform: none !important; filter: none !important; }
+  [data-parallax-y] { transform: none !important; }
+}
 
 /* ── BUTTONS ───────────────────────────────────────────── */
 .btn {

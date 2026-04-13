@@ -88,7 +88,69 @@
   }, { passive: true });
   onScroll();
 
+  // ── STAT COUNTER ──────────────────────────────────────
+  const counters = document.querySelectorAll('[data-counter]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseFloat(el.dataset.counter);
+          const duration = parseInt(el.dataset.counterDuration, 10) || 1600;
+          const start = performance.now();
+          const startVal = 0;
+
+          function tick(now) {
+            const elapsed = now - start;
+            const t = Math.min(1, elapsed / duration);
+            // ease-out-expo
+            const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+            const value = startVal + (target - startVal) * eased;
+            el.textContent = Number.isInteger(target) ? Math.round(value) : value.toFixed(1);
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          counterObserver.unobserve(el);
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach((c) => counterObserver.observe(c));
+  }
+
   if (prefersReducedMotion) return;
+
+  // ── SCROLL PARALLAX (data-parallax-y="0.2" → element drifts at 20% scroll speed) ──
+  const parallaxYEls = Array.from(document.querySelectorAll('[data-parallax-y]'));
+  if (parallaxYEls.length) {
+    let pTicking = false;
+
+    function updateParallaxY() {
+      const vh = window.innerHeight;
+      parallaxYEls.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        // skip offscreen
+        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        const speed = parseFloat(el.dataset.parallaxY) || 0.15;
+        // distance of element center from viewport center, normalized
+        const center = rect.top + rect.height / 2;
+        const offset = center - vh / 2;
+        const py = -offset * speed;
+        el.style.setProperty('--py', py.toFixed(1) + 'px');
+      });
+      pTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!pTicking) {
+        window.requestAnimationFrame(updateParallaxY);
+        pTicking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', updateParallaxY, { passive: true });
+    updateParallaxY();
+  }
 
   // ── MAGNETIC BUTTONS / LINKS ──────────────────────────
   const magneticEls = document.querySelectorAll('[data-magnetic]');

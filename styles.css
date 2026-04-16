@@ -750,6 +750,57 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
   z-index: -1;
 }
+/* HERO BUY BUTTON (floating at base of each 3D book) */
+.hero-buy-btn {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bone);
+  background: var(--blood);
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow:
+    0 8px 28px -6px var(--blood-glow),
+    0 2px 8px rgba(0,0,0,0.4);
+  transition: transform 500ms var(--ease-out-expo),
+              background 400ms var(--ease-out-expo),
+              box-shadow 400ms var(--ease-out-expo);
+  animation: heroBuyFloat 3s ease-in-out infinite;
+}
+.hero-buy-btn:hover {
+  background: var(--blood-hot);
+  transform: translateX(-50%) translateY(-3px) scale(1.05);
+  box-shadow:
+    0 14px 40px -8px var(--blood-glow),
+    0 4px 12px rgba(0,0,0,0.5);
+}
+.hero-buy-btn:active {
+  transform: translateX(-50%) scale(0.97);
+}
+.hero-buy-btn i {
+  font-size: 1rem;
+}
+@keyframes heroBuyFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-5px); }
+}
+.hero-buy-btn:hover {
+  animation: none;
+}
+
 /* BADGE (hero) */
 .book-3d__badge {
   position: absolute;
@@ -1829,6 +1880,7 @@ img { max-width: 100%; display: block; }
     --book-d: 54px;
   }
   .hero__stats { gap: 2rem; }
+  .hero-buy-btn { font-size: 0.75rem; padding: 0.6rem 1.2rem; }
 
   .book-3d--feature {
     --book-w: 240px;
@@ -1885,4 +1937,35 @@ img { max-width: 100%; display: block; }
     transition-duration: 0.001ms !important;
   }
   .hero__mesh, .marquee-strip__track { animation: none; }
+}
+
+#bg-audio-toggle {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(12, 12, 14, 0.78);
+  color: #f5f2ea;
+  font: 600 0.72rem/1 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+#bg-audio-toggle:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.35); }
+#bg-audio-toggle .bg-audio-toggle__icon { font-size: 1rem; line-height: 1; opacity: 0.75; }
+#bg-audio-toggle.is-playing { background: rgba(198, 160, 90, 0.92); color: #0b0b0d; border-color: rgba(0,0,0,0.25); }
+#bg-audio-toggle.is-playing .bg-audio-toggle__icon { opacity: 1; animation: bgAudioPulse 1.6s ease-in-out infinite; }
+@keyframes bgAudioPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+@media (max-width: 600px) {
+  #bg-audio-toggle { right: 0.75rem; bottom: 0.75rem; padding: 0.5rem 0.75rem; font-size: 0.65rem; }
 }

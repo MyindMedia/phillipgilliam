@@ -208,6 +208,9 @@
               </div>
             </div>
             <div class="book-3d__shadow"></div>
+            <button class="hero-buy-btn" data-stripe-price="price_1TMbNp8Z7Yd04uE6B61hNPNo" type="button">
+              <i class="ph-light ph-shopping-cart-simple"></i> Buy Now
+            </button>
           </div>
           <div class="book-3d book-3d--hero book-3d--front-stack" data-book-3d data-parallax-depth="1.1">
             <span class="book-3d__badge">New Release</span>
@@ -227,6 +230,9 @@
               </div>
             </div>
             <div class="book-3d__shadow"></div>
+            <button class="hero-buy-btn" data-stripe-price="price_1TMbPM8Z7Yd04uE6z5pgBEKG" type="button">
+              <i class="ph-light ph-shopping-cart-simple"></i> Buy Now
+            </button>
           </div>
         </div>
       </div>
@@ -937,11 +943,17 @@
     </div>
   </footer>
 
+  <script src="https://js.stripe.com/v3/"></script>
   <script type="module">
     import * as Motion from "https://cdn.jsdelivr.net/npm/motion@11/+esm";
     window.Motion = Motion;
     window.dispatchEvent(new Event("motion:ready"));
   </script>
+  <audio id="bg-audio" src="audio/oil-man-jazz-noir.mp3" loop preload="auto"></audio>
+  <button id="bg-audio-toggle" type="button" aria-label="Toggle background music" aria-pressed="false">
+    <span class="bg-audio-toggle__icon" aria-hidden="true">&#9835;</span>
+    <span class="bg-audio-toggle__label">Music Off</span>
+  </button>
   <script src="script.js"></script>
 </body>
 </html>

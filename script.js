@@ -325,3 +325,85 @@
     });
   }
 })();
+
+// ── STRIPE BUY NOW BUTTONS ─────────────────────────────
+// Requires: <script src="https://js.stripe.com/v3/"></script> loaded before this.
+//
+// HOW TO FINISH SETUP:
+// 1. Log in to your Stripe Dashboard → Products.
+// 2. Create a product for each book (e.g. "Black Leather Apron", "At All Times").
+// 3. Add a one-time price to each product (e.g. $19.99).
+// 4. Copy each price ID (starts with "price_...").
+// 5. Replace the data-stripe-price values on the two <button> elements in index.html:
+//      data-stripe-price="price_BLA_REPLACE_ME"  →  your real BLA price ID
+//      data-stripe-price="price_AAT_REPLACE_ME"  →  your real AAT price ID
+// 6. In Stripe Dashboard → Settings → Checkout, set your success/cancel URLs.
+(function stripeCheckout() {
+  if (typeof Stripe === 'undefined') return;
+
+  var stripe = Stripe('pk_live_51TMacN8Z7Yd04uE69d2Ucni3mJAspqQdA7RzMSprWPR1XfEoXr0pz7ZKe07kQ1GYtIF5oWv7bbaXseoc2aeCrJnt00NEJunzJ5');
+
+  document.querySelectorAll('.hero-buy-btn[data-stripe-price]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var priceId = btn.getAttribute('data-stripe-price');
+
+      if (priceId.indexOf('REPLACE_ME') !== -1) {
+        alert('Stripe is not fully configured yet. Please set up your product prices in the Stripe Dashboard and update the price IDs in the HTML.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+
+      stripe.redirectToCheckout({
+        lineItems: [{ price: priceId, quantity: 1 }],
+        mode: 'payment',
+        successUrl: window.location.origin + window.location.pathname + '?purchase=success',
+        cancelUrl: window.location.origin + window.location.pathname + '?purchase=cancelled'
+      }).then(function (result) {
+        if (result.error) {
+          alert(result.error.message);
+        }
+        btn.disabled = false;
+        btn.style.opacity = '';
+      });
+    });
+  });
+})();
+
+(function backgroundAudio() {
+  const audio = document.getElementById('bg-audio');
+  const toggle = document.getElementById('bg-audio-toggle');
+  if (!audio || !toggle) return;
+
+  audio.volume = 0.35;
+  const label = toggle.querySelector('.bg-audio-toggle__label');
+
+  const setUI = (playing) => {
+    toggle.classList.toggle('is-playing', playing);
+    toggle.setAttribute('aria-pressed', String(playing));
+    if (label) label.textContent = playing ? 'Music On' : 'Music Off';
+  };
+
+  const tryPlay = () => audio.play().then(() => setUI(true)).catch(() => setUI(false));
+
+  tryPlay();
+
+  const onFirstInteraction = () => {
+    if (audio.paused) tryPlay();
+    window.removeEventListener('pointerdown', onFirstInteraction);
+    window.removeEventListener('keydown', onFirstInteraction);
+    window.removeEventListener('scroll', onFirstInteraction);
+  };
+  window.addEventListener('pointerdown', onFirstInteraction, { once: true });
+  window.addEventListener('keydown', onFirstInteraction, { once: true });
+  window.addEventListener('scroll', onFirstInteraction, { once: true });
+
+  toggle.addEventListener('click', () => {
+    if (audio.paused) tryPlay();
+    else { audio.pause(); setUI(false); }
+  });
+
+  audio.addEventListener('play', () => setUI(true));
+  audio.addEventListener('pause', () => setUI(false));
+})();

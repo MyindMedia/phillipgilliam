@@ -544,6 +544,7 @@
 
   audio.volume = 0.35;
   const label = toggle.querySelector('.bg-audio-toggle__label');
+  let userTurnedOff = false; // tracks if user manually turned music off
 
   const setUI = (playing) => {
     toggle.classList.toggle('is-playing', playing);
@@ -553,21 +554,23 @@
 
   const tryPlay = () => audio.play().then(() => setUI(true)).catch(() => setUI(false));
 
-  tryPlay();
-
-  const onFirstInteraction = () => {
-    if (audio.paused) tryPlay();
-    window.removeEventListener('pointerdown', onFirstInteraction);
-    window.removeEventListener('keydown', onFirstInteraction);
-    window.removeEventListener('scroll', onFirstInteraction);
+  // Start music on first scroll (browsers allow play after user gesture)
+  const onScroll = () => {
+    if (!userTurnedOff && audio.paused) tryPlay();
+    window.removeEventListener('scroll', onScroll);
   };
-  window.addEventListener('pointerdown', onFirstInteraction, { once: true });
-  window.addEventListener('keydown', onFirstInteraction, { once: true });
-  window.addEventListener('scroll', onFirstInteraction, { once: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
 
+  // Toggle button: user can turn off/on manually
   toggle.addEventListener('click', () => {
-    if (audio.paused) tryPlay();
-    else { audio.pause(); setUI(false); }
+    if (audio.paused) {
+      userTurnedOff = false;
+      tryPlay();
+    } else {
+      userTurnedOff = true;
+      audio.pause();
+      setUI(false);
+    }
   });
 
   audio.addEventListener('play', () => setUI(true));

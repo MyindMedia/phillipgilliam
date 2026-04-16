@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Order Confirmed · Phillip Gilliam</title>
+  <meta name="description" content="Thank you for your purchase. Your order has been confirmed.">
+  <meta name="author" content="Phillip Gilliam">
+  <meta name="theme-color" content="#0a0a0b">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/light/style.css">
+
+  <style>
+    *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:           #0A0A0B;
+      --ink-2:         #111114;
+      --ink-3:         #16161B;
+      --bone:          #F2ECEA;
+      --bone-mid:      #BDB3B0;
+      --bone-low:      #6F6764;
+      --blood:         #B91C1C;
+      --blood-hot:     #DC2626;
+      --blood-glow:    rgba(185,28,28,0.35);
+      --line:          rgba(255,255,255,0.08);
+      --line-strong:   rgba(255,255,255,0.14);
+      --green:         #22c55e;
+      --green-glow:    rgba(34,197,94,0.25);
+      --font-serif:    'Playfair Display', Georgia, serif;
+      --font-sans:     'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono:     'JetBrains Mono', monospace;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --radius-xl:     2rem;
+      --radius-lg:     1.5rem;
+      --radius-md:     1rem;
+      --radius-pill:   100px;
+    }
+
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      color: var(--bone);
+      background: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Nav (simplified) ── */
+    .nav {
+      padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+      display: flex;
+      justify-content: center;
+    }
+    .nav__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0.7rem 1.5rem;
+      background: rgba(10,10,11,0.72);
+      backdrop-filter: blur(28px) saturate(140%);
+      -webkit-backdrop-filter: blur(28px) saturate(140%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 14px 50px rgba(0,0,0,0.45);
+    }
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--bone);
+      white-space: nowrap;
+    }
+    .nav__logo-dot { color: var(--blood); }
+    .nav__back {
+      padding: 0.55rem 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--bone-mid);
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 400ms var(--ease-out-expo);
+    }
+    .nav__back:hover {
+      color: var(--bone);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ── Main confirmation ── */
+    .confirm {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem clamp(1.25rem, 4vw, 3rem) 4rem;
+    }
+    .confirm__card {
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(2.5rem, 6vw, 4rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .confirm__card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(34,197,94,0.4), transparent 40%, transparent 60%, rgba(34,197,94,0.2));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    .confirm__card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(60% 50% at 50% 0%, rgba(34,197,94,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .confirm__inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Checkmark circle */
+    .confirm__check {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.12);
+      border: 2px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.25rem;
+      color: var(--green);
+      box-shadow: 0 12px 40px var(--green-glow);
+      animation: checkPop 800ms var(--ease-out-expo) both;
+    }
+    @keyframes checkPop {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .confirm__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--bone);
+      margin-bottom: 1rem;
+      animation: fadeUp 800ms 200ms var(--ease-out-expo) both;
+    }
+    .confirm__subtitle {
+      font-size: 1.0625rem;
+      color: var(--bone-mid);
+      max-width: 440px;
+      margin: 0 auto 2rem;
+      line-height: 1.65;
+      animation: fadeUp 800ms 350ms var(--ease-out-expo) both;
+    }
+
+    /* Order details */
+    .confirm__details {
+      background: var(--ink-3);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeUp 800ms 450ms var(--ease-out-expo) both;
+    }
+    .confirm__detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+    }
+    .confirm__detail-row + .confirm__detail-row {
+      border-top: 1px solid var(--line);
+    }
+    .confirm__detail-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--bone-low);
+    }
+    .confirm__detail-value {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--bone);
+    }
+    .confirm__detail-value--green {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* What's next */
+    .confirm__next {
+      text-align: left;
+      margin-bottom: 2rem;
+      animation: fadeUp 800ms 550ms var(--ease-out-expo) both;
+    }
+    .confirm__next-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--blood-hot);
+      margin-bottom: 1rem;
+    }
+    .confirm__next-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .confirm__next-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      color: var(--bone-mid);
+      line-height: 1.55;
+    }
+    .confirm__next-list li i {
+      color: var(--green);
+      font-size: 1.1rem;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    /* Actions */
+    .confirm__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 800ms 650ms var(--ease-out-expo) both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1.85rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 600ms var(--ease-out-expo),
+                  background 500ms var(--ease-out-expo),
+                  border-color 500ms var(--ease-out-expo),
+                  box-shadow 500ms var(--ease-out-expo);
+    }
+    .btn--primary {
+      background: var(--blood);
+      color: var(--bone);
+      box-shadow: 0 8px 30px -8px var(--blood-glow);
+    }
+    .btn--primary:hover {
+      background: var(--blood-hot);
+      box-shadow: 0 14px 40px -10px var(--blood-glow);
+    }
+    .btn--ghost {
+      background: transparent;
+      color: var(--bone);
+      border-color: var(--line-strong);
+    }
+    .btn--ghost:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.22);
+    }
+    .btn__icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.18);
+      transition: transform 600ms var(--ease-out-expo);
+    }
+    .btn:hover .btn__icon-wrap { transform: translate(3px, -2px) scale(1.06); }
+    .btn__icon-wrap i { font-size: 0.875rem; }
+
+    /* Tagline */
+    .confirm__tagline {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      animation: fadeUp 800ms 750ms var(--ease-out-expo) both;
+    }
+    .confirm__tagline blockquote {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-style: italic;
+      color: var(--bone-mid);
+      line-height: 1.4;
+    }
+    .confirm__tagline cite {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      font-style: normal;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--bone-low);
+    }
+    .confirm__tagline-line {
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--blood);
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translate3d(0, 24px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 2rem clamp(1.25rem, 4vw, 3rem);
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+    .footer__copy {
+      font-size: 0.8125rem;
+      color: var(--bone-low);
+    }
+
+    /* ── Grain ── */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      z-index: 9999;
+    }
+
+    @media (max-width: 540px) {
+      .confirm__actions { flex-direction: column; }
+      .confirm__actions .btn { width: 100%; justify-content: center; }
+      .nav__pill { padding: 0.55rem 1.25rem; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__pill">
+      <a href="index.html" class="nav__logo">P<span class="nav__logo-dot">.</span>Gilliam</a>
+      <a href="index.html" class="nav__back">
+        <i class="ph-light ph-arrow-left"></i> Back to Site
+      </a>
+    </div>
+  </nav>
+
+  <main class="confirm">
+    <div class="confirm__card">
+      <div class="confirm__inner">
+
+        <div class="confirm__check">
+          <i class="ph-light ph-check-circle"></i>
+        </div>
+
+        <h1 class="confirm__title">Order Confirmed.</h1>
+        <p class="confirm__subtitle">
+          Thank you for your purchase. You'll receive a confirmation email
+          from Stripe with your receipt shortly.
+        </p>
+
+        <div class="confirm__details">
+          <div class="confirm__detail-row">
+            <span class="confirm__detail-label">Status</span>
+            <span class="confirm__detail-value confirm__detail-value--green">Payment Successful</span>
+          </div>
+          <div class="confirm__detail-row">
+            <span class="confirm__detail-label">Seller</span>
+            <span class="confirm__detail-value">Phillip Noire, LLC</span>
+          </div>
+          <div class="confirm__detail-row">
+            <span class="confirm__detail-label">Receipt</span>
+            <span class="confirm__detail-value">Sent to your email</span>
+          </div>
+        </div>
+
+        <div class="confirm__next">
+          <h2 class="confirm__next-title">What happens next</h2>
+          <ul class="confirm__next-list">
+            <li>
+              <i class="ph-light ph-envelope-simple"></i>
+              Check your email for the order confirmation and receipt from Stripe.
+            </li>
+            <li>
+              <i class="ph-light ph-package"></i>
+              Your book will be shipped to the address you provided at checkout.
+            </li>
+            <li>
+              <i class="ph-light ph-chat-circle-text"></i>
+              Questions about your order? <a href="index.html#contact" style="color: var(--blood-hot); text-decoration: underline;">Contact Phillip directly.</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="confirm__actions">
+          <a href="index.html" class="btn btn--primary">
+            <span>Back to Home</span>
+            <span class="btn__icon-wrap"><i class="ph-light ph-arrow-left"></i></span>
+          </a>
+          <a href="index.html#books" class="btn btn--ghost">Explore More Books</a>
+        </div>
+
+        <div class="confirm__tagline">
+          <blockquote>"Justice is optional. Power is invisible. Vengeance is never satisfied."</blockquote>
+          <cite>
+            <span class="confirm__tagline-line"></span>
+            The John Talion Mysteries
+          </cite>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copy">&copy; 2026 Phillip Gilliam. All rights reserved. Phillip Noire, LLC</p>
+  </footer>
+
+  <div class="grain-overlay"></div>
+
+</body>
+</html>

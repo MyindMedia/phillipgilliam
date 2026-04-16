@@ -64,7 +64,7 @@
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-    /* ── Nav (simplified) ── */
+    /* ── Nav ── */
     .nav {
       padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
       display: flex;
@@ -106,7 +106,7 @@
       background: rgba(255,255,255,0.06);
     }
 
-    /* ── Main confirmation ── */
+    /* ── Main ── */
     .confirm {
       flex: 1;
       display: flex;
@@ -115,7 +115,7 @@
       padding: 2rem clamp(1.25rem, 4vw, 3rem) 4rem;
     }
     .confirm__card {
-      max-width: 620px;
+      max-width: 660px;
       width: 100%;
       text-align: center;
       background: var(--ink-2);
@@ -145,12 +145,9 @@
       background: radial-gradient(60% 50% at 50% 0%, rgba(34,197,94,0.08), transparent 70%);
       pointer-events: none;
     }
-    .confirm__inner {
-      position: relative;
-      z-index: 1;
-    }
+    .confirm__inner { position: relative; z-index: 1; }
 
-    /* Checkmark circle */
+    /* Checkmark */
     .confirm__check {
       width: 80px;
       height: 80px;
@@ -191,14 +188,79 @@
       animation: fadeUp 800ms 350ms var(--ease-out-expo) both;
     }
 
-    /* Order details */
+    /* ── Order Recap ── */
+    .confirm__order {
+      background: var(--ink-3);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 800ms 420ms var(--ease-out-expo) both;
+    }
+    .confirm__order-header {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--blood-hot);
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .confirm__order-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1rem;
+      align-items: center;
+      text-align: left;
+    }
+    .confirm__order-item + .confirm__order-item {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+    .confirm__order-img {
+      width: 56px;
+      height: 80px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+    .confirm__order-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .confirm__order-info {}
+    .confirm__order-series {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blood-hot);
+      margin-bottom: 0.2rem;
+    }
+    .confirm__order-name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--bone);
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .confirm__order-author {
+      font-size: 0.8125rem;
+      color: var(--bone-low);
+    }
+
+    /* ── Details ── */
     .confirm__details {
       background: var(--ink-3);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
       margin-bottom: 2rem;
-      animation: fadeUp 800ms 450ms var(--ease-out-expo) both;
+      animation: fadeUp 800ms 500ms var(--ease-out-expo) both;
     }
     .confirm__detail-row {
       display: flex;
@@ -225,11 +287,11 @@
       font-weight: 600;
     }
 
-    /* What's next */
+    /* ── What's next ── */
     .confirm__next {
       text-align: left;
       margin-bottom: 2rem;
-      animation: fadeUp 800ms 550ms var(--ease-out-expo) both;
+      animation: fadeUp 800ms 580ms var(--ease-out-expo) both;
     }
     .confirm__next-title {
       font-family: var(--font-mono);
@@ -260,13 +322,13 @@
       flex-shrink: 0;
     }
 
-    /* Actions */
+    /* ── Actions ── */
     .confirm__actions {
       display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
-      animation: fadeUp 800ms 650ms var(--ease-out-expo) both;
+      animation: fadeUp 800ms 660ms var(--ease-out-expo) both;
     }
     .btn {
       display: inline-flex;
@@ -316,7 +378,7 @@
     .btn:hover .btn__icon-wrap { transform: translate(3px, -2px) scale(1.06); }
     .btn__icon-wrap i { font-size: 0.875rem; }
 
-    /* Tagline */
+    /* ── Tagline ── */
     .confirm__tagline {
       margin-top: 2.5rem;
       padding-top: 2rem;
@@ -353,7 +415,6 @@
       100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
 
-    /* ── Footer ── */
     .footer {
       padding: 2rem clamp(1.25rem, 4vw, 3rem);
       border-top: 1px solid var(--line);
@@ -364,7 +425,6 @@
       color: var(--bone-low);
     }
 
-    /* ── Grain ── */
     .grain-overlay {
       position: fixed;
       inset: 0;
@@ -407,6 +467,14 @@
           Thank you for your purchase. You'll receive a confirmation email
           from Stripe with your receipt shortly.
         </p>
+
+        <!-- ORDER RECAP (populated by JS based on ?book= param) -->
+        <div class="confirm__order" id="orderRecap">
+          <p class="confirm__order-header">Your Order</p>
+          <div id="orderItems">
+            <!-- JS fills this -->
+          </div>
+        </div>
 
         <div class="confirm__details">
           <div class="confirm__detail-row">
@@ -466,6 +534,53 @@
   </footer>
 
   <div class="grain-overlay"></div>
+
+  <script>
+  (function () {
+    var BOOKS = {
+      bla: {
+        name: 'Black Leather Apron',
+        series: 'A John Talion Mystery · Book One',
+        image: 'images/black-leather-apron-cover.jpg',
+        author: 'Phillip Gilliam'
+      },
+      aat: {
+        name: 'At All Times',
+        series: 'A John Talion Mystery · Book Two',
+        image: 'images/at-all-times-cover.png',
+        author: 'Phillip Gilliam'
+      }
+    };
+
+    var params = new URLSearchParams(window.location.search);
+    var bookParam = params.get('book');
+    var container = document.getElementById('orderItems');
+
+    // Determine which book(s) to show
+    var booksToShow = [];
+    if (bookParam && BOOKS[bookParam]) {
+      booksToShow.push(BOOKS[bookParam]);
+    } else {
+      // No param or unknown — show both as possibilities
+      booksToShow.push(BOOKS.bla);
+      booksToShow.push(BOOKS.aat);
+    }
+
+    var html = '';
+    booksToShow.forEach(function (book) {
+      html +=
+        '<div class="confirm__order-item">' +
+          '<div class="confirm__order-img"><img src="' + book.image + '" alt="' + book.name + '"></div>' +
+          '<div class="confirm__order-info">' +
+            '<p class="confirm__order-series">' + book.series + '</p>' +
+            '<p class="confirm__order-name">' + book.name + '</p>' +
+            '<p class="confirm__order-author">by ' + book.author + '</p>' +
+          '</div>' +
+        '</div>';
+    });
+    container.innerHTML = html;
+  })();
+  </script>
 
 </body>
 </html>

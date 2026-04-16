@@ -501,6 +501,8 @@
   });
 
   // ── Stripe Checkout ──
+  // Client-only integration requires enabling in Stripe Dashboard:
+  //   Settings → Checkout → Client-only integration → ON
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', function () {
       if (typeof Stripe === 'undefined') {
@@ -509,14 +511,14 @@
       }
       if (cart.length === 0) return;
 
-      var stripe = Stripe(STRIPE_PK);
-
       var lineItems = cart.map(function (item) {
         return { price: PRODUCTS[item.id].priceId, quantity: item.qty };
       });
 
       checkoutBtn.disabled = true;
       checkoutBtn.querySelector('span:first-child').textContent = 'Redirecting…';
+
+      var stripe = Stripe(STRIPE_PK);
 
       stripe.redirectToCheckout({
         lineItems: lineItems,
@@ -525,8 +527,12 @@
         cancelUrl: window.location.origin + window.location.pathname + '?purchase=cancelled'
       }).then(function (result) {
         if (result.error) {
-          alert(result.error.message);
+          alert('Checkout error: ' + result.error.message);
         }
+        checkoutBtn.disabled = false;
+        checkoutBtn.querySelector('span:first-child').textContent = 'Checkout with Stripe';
+      }).catch(function (err) {
+        alert('Checkout failed: ' + (err.message || err) + '\n\nPlease ensure "Client-only integration" is enabled in Stripe Dashboard → Settings → Checkout.');
         checkoutBtn.disabled = false;
         checkoutBtn.querySelector('span:first-child').textContent = 'Checkout with Stripe';
       });

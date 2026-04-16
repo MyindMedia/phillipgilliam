@@ -326,37 +326,200 @@
   }
 })();
 
-// ── STRIPE BUY NOW BUTTONS ─────────────────────────────
-// Requires: <script src="https://js.stripe.com/v3/"></script> loaded before this.
-//
-// HOW TO FINISH SETUP:
-// 1. Log in to your Stripe Dashboard → Products.
-// 2. Create a product for each book (e.g. "Black Leather Apron", "At All Times").
-// 3. Add a one-time price to each product (e.g. $19.99).
-// 4. Copy each price ID (starts with "price_...").
-// 5. Replace the data-stripe-price values on the two <button> elements in index.html:
-//      data-stripe-price="price_BLA_REPLACE_ME"  →  your real BLA price ID
-//      data-stripe-price="price_AAT_REPLACE_ME"  →  your real AAT price ID
-// 6. In Stripe Dashboard → Settings → Checkout, set your success/cancel URLs.
-(function stripeCheckout() {
-  if (typeof Stripe === 'undefined') return;
+// ── CART + STRIPE CHECKOUT ──────────────────────────────
+(function cartAndCheckout() {
+  var STRIPE_PK = 'pk_live_51TMacN8Z7Yd04uE69d2Ucni3mJAspqQdA7RzMSprWPR1XfEoXr0pz7ZKe07kQ1GYtIF5oWv7bbaXseoc2aeCrJnt00NEJunzJ5';
 
-  var stripe = Stripe('pk_live_51TMacN8Z7Yd04uE69d2Ucni3mJAspqQdA7RzMSprWPR1XfEoXr0pz7ZKe07kQ1GYtIF5oWv7bbaXseoc2aeCrJnt00NEJunzJ5');
+  // Product catalog (maps product ID to details)
+  var PRODUCTS = {
+    bla: {
+      id: 'bla',
+      name: 'Black Leather Apron',
+      series: 'John Talion Mystery · Book One',
+      priceId: 'price_1TMbNp8Z7Yd04uE6B61hNPNo',
+      image: 'images/black-leather-apron-cover.jpg'
+    },
+    aat: {
+      id: 'aat',
+      name: 'At All Times',
+      series: 'John Talion Mystery · Book Two',
+      priceId: 'price_1TMbPM8Z7Yd04uE6z5pgBEKG',
+      image: 'images/at-all-times-cover.png'
+    }
+  };
 
-  document.querySelectorAll('.hero-buy-btn[data-stripe-price]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var priceId = btn.getAttribute('data-stripe-price');
+  // ── Cart state ──
+  var cart = [];
 
-      if (priceId.indexOf('REPLACE_ME') !== -1) {
-        alert('Stripe is not fully configured yet. Please set up your product prices in the Stripe Dashboard and update the price IDs in the HTML.');
+  // DOM refs
+  var overlay     = document.getElementById('cartOverlay');
+  var drawer      = document.getElementById('cartDrawer');
+  var cartBody    = document.getElementById('cartBody');
+  var cartItems   = document.getElementById('cartItems');
+  var cartEmpty   = document.getElementById('cartEmpty');
+  var cartFooter  = document.getElementById('cartFooter');
+  var cartTotal   = document.getElementById('cartTotal');
+  var cartCount   = document.getElementById('navCartCount');
+  var navCartBtn  = document.getElementById('navCartBtn');
+  var closeBtn    = document.getElementById('cartClose');
+  var checkoutBtn = document.getElementById('cartCheckoutBtn');
+
+  // ── Open / Close drawer ──
+  function openCart() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (navCartBtn) navCartBtn.addEventListener('click', openCart);
+  if (closeBtn) closeBtn.addEventListener('click', closeCart);
+  if (overlay) overlay.addEventListener('click', closeCart);
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeCart();
+  });
+
+  // ── Add to cart ──
+  function addToCart(productId) {
+    var product = PRODUCTS[productId];
+    if (!product) return;
+
+    var existing = cart.find(function (item) { return item.id === productId; });
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ id: productId, qty: 1 });
+    }
+    renderCart();
+    openCart();
+  }
+
+  // ── Remove from cart ──
+  function removeFromCart(productId) {
+    cart = cart.filter(function (item) { return item.id !== productId; });
+    renderCart();
+  }
+
+  // ── Update quantity ──
+  function updateQty(productId, delta) {
+    var item = cart.find(function (i) { return i.id === productId; });
+    if (!item) return;
+    item.qty = Math.max(1, item.qty + delta);
+    renderCart();
+  }
+
+  // ── Render cart UI ──
+  function renderCart() {
+    var totalCount = 0;
+    cart.forEach(function (item) { totalCount += item.qty; });
+
+    // Nav badge
+    if (totalCount > 0) {
+      cartCount.textContent = totalCount;
+      cartCount.hidden = false;
+    } else {
+      cartCount.hidden = true;
+    }
+
+    // Empty state
+    if (cart.length === 0) {
+      cartEmpty.style.display = '';
+      cartItems.innerHTML = '';
+      cartFooter.hidden = true;
+      return;
+    }
+
+    cartEmpty.style.display = 'none';
+    cartFooter.hidden = false;
+
+    // Build items HTML
+    var html = '';
+    cart.forEach(function (item) {
+      var product = PRODUCTS[item.id];
+      html +=
+        '<div class="cart-item" data-cart-id="' + item.id + '">' +
+          '<div class="cart-item__img"><img src="' + product.image + '" alt="' + product.name + '"></div>' +
+          '<div class="cart-item__info">' +
+            '<p class="cart-item__series">' + product.series + '</p>' +
+            '<p class="cart-item__name">' + product.name + '</p>' +
+            '<div class="cart-item__qty">' +
+              '<button class="cart-item__qty-btn" data-qty-action="dec" data-qty-id="' + item.id + '" type="button" aria-label="Decrease quantity">&minus;</button>' +
+              '<span class="cart-item__qty-num">' + item.qty + '</span>' +
+              '<button class="cart-item__qty-btn" data-qty-action="inc" data-qty-id="' + item.id + '" type="button" aria-label="Increase quantity">+</button>' +
+            '</div>' +
+          '</div>' +
+          '<button class="cart-item__remove" data-remove-id="' + item.id + '" type="button" aria-label="Remove ' + product.name + '">' +
+            '<i class="ph-light ph-trash"></i>' +
+          '</button>' +
+        '</div>';
+    });
+    cartItems.innerHTML = html;
+
+    // Total label (qty count)
+    cartTotal.textContent = totalCount + (totalCount === 1 ? ' book' : ' books');
+
+    // Wire up qty and remove buttons
+    cartItems.querySelectorAll('[data-qty-action]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-qty-id');
+        var delta = btn.getAttribute('data-qty-action') === 'inc' ? 1 : -1;
+        updateQty(id, delta);
+      });
+    });
+    cartItems.querySelectorAll('[data-remove-id]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        removeFromCart(btn.getAttribute('data-remove-id'));
+      });
+    });
+  }
+
+  // ── Add-to-cart button click (all 4 buttons) ──
+  document.querySelectorAll('.add-to-cart-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var productId = btn.getAttribute('data-product-id');
+      addToCart(productId);
+
+      // Brief "Added" flash
+      var label = btn.querySelector('span');
+      if (label) {
+        var original = label.innerHTML;
+        label.innerHTML = '<i class="ph-light ph-check-circle"></i> Added to Cart';
+        btn.classList.add('added');
+        setTimeout(function () {
+          label.innerHTML = original;
+          btn.classList.remove('added');
+        }, 1200);
+      }
+    });
+  });
+
+  // ── Stripe Checkout ──
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function () {
+      if (typeof Stripe === 'undefined') {
+        alert('Payment system is loading. Please try again in a moment.');
         return;
       }
+      if (cart.length === 0) return;
 
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
+      var stripe = Stripe(STRIPE_PK);
+
+      var lineItems = cart.map(function (item) {
+        return { price: PRODUCTS[item.id].priceId, quantity: item.qty };
+      });
+
+      checkoutBtn.disabled = true;
+      checkoutBtn.querySelector('span:first-child').textContent = 'Redirecting…';
 
       stripe.redirectToCheckout({
-        lineItems: [{ price: priceId, quantity: 1 }],
+        lineItems: lineItems,
         mode: 'payment',
         successUrl: window.location.origin + window.location.pathname + '?purchase=success',
         cancelUrl: window.location.origin + window.location.pathname + '?purchase=cancelled'
@@ -364,11 +527,14 @@
         if (result.error) {
           alert(result.error.message);
         }
-        btn.disabled = false;
-        btn.style.opacity = '';
+        checkoutBtn.disabled = false;
+        checkoutBtn.querySelector('span:first-child').textContent = 'Checkout with Stripe';
       });
     });
-  });
+  }
+
+  // Initial render
+  renderCart();
 })();
 
 (function backgroundAudio() {

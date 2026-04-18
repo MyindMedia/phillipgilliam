@@ -752,15 +752,35 @@
   <!-- ═══════════════════════════════════════════════════ -->
   <section class="film" id="film">
     <div class="film__container">
-      <div class="section-header reveal-element">
-        <span class="eyebrow-pill">On Screen</span>
-        <h2 class="section-title">Black Leather Apron,<br>on screen.</h2>
-        <p class="section-lede reveal-element">
-          A feature film adaptation based on the erotic crime story and
-          screenplay by Phillip Gilliam, produced under <strong>Phillip
-          Noire, LLC</strong>. The package is complete and the pitch is out
-          with producers now.
-        </p>
+      <div class="film__intro">
+        <div class="section-header reveal-element">
+          <span class="eyebrow-pill">On Screen</span>
+          <h2 class="section-title">Black Leather Apron,<br>on screen.</h2>
+          <p class="section-lede reveal-element">
+            A feature film adaptation based on the erotic crime story and
+            screenplay by Phillip Gilliam, produced under <strong>Phillip
+            Noire, LLC</strong>. The package is complete and the pitch is out
+            with producers now.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="film__video reveal-element"
+          data-video-trigger
+          data-vimeo-id="419418493"
+          aria-label="Play the Black Leather Apron sizzle reel"
+        >
+          <img
+            class="film__video-thumb"
+            src="https://vumbnail.com/419418493_large.jpg"
+            alt="Black Leather Apron sizzle reel preview"
+            loading="lazy"
+          />
+          <span class="film__video-overlay" aria-hidden="true">
+            <span class="film__video-play"><i class="ph-fill ph-play"></i></span>
+            <span class="film__video-label">Watch the Sizzle Reel</span>
+          </span>
+        </button>
       </div>
       <div class="film__grid">
         <div class="film__col reveal-element">
@@ -993,6 +1013,16 @@
       <p class="cart-drawer__secure"><i class="ph-light ph-shield-check"></i> Secure payment via Stripe</p>
     </div>
   </aside>
+
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Sizzle reel video" hidden>
+    <div class="video-modal__backdrop" data-video-close></div>
+    <div class="video-modal__frame">
+      <button type="button" class="video-modal__close" data-video-close aria-label="Close video">
+        <i class="ph-light ph-x"></i>
+      </button>
+      <div class="video-modal__player" id="videoModalPlayer"></div>
+    </div>
+  </div>
 
   <script type="module">
     import * as Motion from "https://cdn.jsdelivr.net/npm/motion@11/+esm";

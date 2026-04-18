@@ -1495,6 +1495,161 @@ img { max-width: 100%; display: block; }
 }
 .film__text em { color: var(--bone); font-style: italic; }
 
+.film__intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+.film__intro .section-header { margin-bottom: 0; }
+.film__video {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--ink-3);
+  overflow: hidden;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: transform 600ms var(--ease-out-expo), border-color 600ms var(--ease-out-expo), box-shadow 600ms var(--ease-out-expo);
+}
+.film__video:hover {
+  transform: translateY(-2px);
+  border-color: rgba(185,28,28,0.55);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+}
+.film__video:focus-visible {
+  outline: 2px solid var(--blood-hot);
+  outline-offset: 4px;
+}
+.film__video-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out-expo), filter 600ms var(--ease-out-expo);
+}
+.film__video:hover .film__video-thumb {
+  transform: scale(1.03);
+  filter: brightness(0.85);
+}
+.film__video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(180deg, rgba(5,5,6,0.15) 0%, rgba(5,5,6,0.55) 100%);
+  pointer-events: none;
+}
+.film__video-play {
+  width: clamp(64px, 9vw, 92px);
+  height: clamp(64px, 9vw, 92px);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--blood-hot);
+  color: var(--bone);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  box-shadow: 0 10px 40px rgba(185,28,28,0.45);
+  transition: transform 500ms var(--ease-out-expo);
+}
+.film__video:hover .film__video-play {
+  transform: scale(1.08);
+}
+.film__video-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms var(--ease-out-expo);
+}
+.video-modal[hidden] { display: none; }
+.video-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.video-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5,5,6,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+.video-modal__frame {
+  position: relative;
+  width: min(1100px, 100%);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transform: scale(0.96);
+  transition: transform 500ms var(--ease-out-expo);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+}
+.video-modal.open .video-modal__frame { transform: scale(1); }
+.video-modal__player {
+  position: absolute;
+  inset: 0;
+}
+.video-modal__player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.video-modal__close {
+  position: absolute;
+  top: clamp(0.5rem, 2vw, 1rem);
+  right: clamp(0.5rem, 2vw, 1rem);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(5,5,6,0.7);
+  color: var(--bone);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background 300ms var(--ease-out-expo), border-color 300ms var(--ease-out-expo), transform 300ms var(--ease-out-expo);
+}
+.video-modal__close:hover {
+  background: var(--blood-hot);
+  border-color: var(--blood-hot);
+  transform: rotate(90deg);
+}
+.video-modal__close:focus-visible {
+  outline: 2px solid var(--bone);
+  outline-offset: 3px;
+}
+body.video-modal-open { overflow: hidden; }
+
 /* ═══════════════════════════════════════════════════════
    NEWS TIMELINE
    ═══════════════════════════════════════════════════════ */
@@ -2194,6 +2349,7 @@ img { max-width: 100%; display: block; }
   .reviews__grid { grid-template-columns: 1fr; }
 
   .film__grid { grid-template-columns: 1fr; }
+  .film__intro { grid-template-columns: 1fr; gap: 2rem; }
   .film__col { padding: 1.75rem; }
 
   .news-item {

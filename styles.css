@@ -2535,3 +2535,133 @@ body.video-modal-open { overflow: hidden; }
 @media (max-width: 600px) {
   #bg-audio-toggle { right: 0.75rem; bottom: 0.75rem; padding: 0.5rem 0.75rem; font-size: 0.65rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   PHILLIP NOIRE, LLC EMBLEM
+   Nav mark · hero watermark · film imprint · footer seal
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Nav mark ─────────────────────────────────────────── */
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav__logo-word { display: inline-block; }
+.nav__logo-seal {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--line-strong), 0 6px 16px rgba(0,0,0,0.5);
+  transition: box-shadow 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo);
+}
+.nav__logo:hover .nav__logo-seal {
+  transform: rotate(-6deg) scale(1.06);
+  box-shadow: 0 0 0 1px rgba(185,28,28,0.55), 0 0 18px var(--blood-glow);
+}
+
+/* ── Contact card watermark ───────────────────────────── */
+.contact__seal {
+  position: absolute;
+  top: 50%;
+  right: -2%;
+  z-index: 0;
+  width: clamp(250px, 31vw, 420px);
+  aspect-ratio: 1 / 1;
+  background: url('images/phillip-noire-emblem.webp') center / contain no-repeat;
+  transform: translateY(-50%);
+  opacity: 0.26;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+}
+
+/* ── Imprint lockup (film section) ────────────────────── */
+.imprint {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+.imprint__seal {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--line-strong), 0 14px 40px rgba(0,0,0,0.6);
+  transition: transform 800ms var(--ease-out-expo), box-shadow 800ms var(--ease-out-expo);
+}
+.imprint:hover .imprint__seal {
+  transform: scale(1.05) rotate(-4deg);
+  box-shadow: 0 0 0 1px rgba(185,28,28,0.45), 0 0 34px var(--blood-glow), 0 14px 40px rgba(0,0,0,0.6);
+}
+.imprint__text { display: flex; flex-direction: column; gap: 0.35rem; }
+.imprint__name {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--bone);
+  letter-spacing: 0.01em;
+}
+.imprint__tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-low);
+}
+
+/* ── Cart drawer trust mark ───────────────────────────── */
+.cart-drawer__sold {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0.25rem 0 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--bone-low);
+}
+.cart-drawer__sold strong { color: var(--bone-mid); font-weight: 600; }
+.cart-drawer__seal {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--line-strong);
+}
+
+/* ── Footer seal ──────────────────────────────────────── */
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+.footer__seal {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--line-strong), 0 12px 34px rgba(0,0,0,0.55);
+  transition: transform 800ms var(--ease-out-expo), box-shadow 800ms var(--ease-out-expo);
+}
+.footer__brand:hover .footer__seal {
+  transform: rotate(-5deg) scale(1.05);
+  box-shadow: 0 0 0 1px rgba(185,28,28,0.5), 0 0 30px var(--blood-glow), 0 12px 34px rgba(0,0,0,0.55);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 968px) {
+  .contact__seal { right: -14%; width: clamp(240px, 46vw, 380px); opacity: 0.24; }
+  .imprint__seal { width: 72px; height: 72px; }
+  .footer__seal { width: 64px; height: 64px; }
+}
+@media (max-width: 540px) {
+  .nav__logo-seal { width: 26px; height: 26px; }
+  .contact__seal { top: auto; bottom: -12%; right: -22%; transform: none; width: 280px; opacity: 0.18; }
+  .imprint { gap: 0.875rem; padding-top: 1.5rem; margin-top: 1.5rem; }
+  .imprint__seal { width: 62px; height: 62px; }
+  .footer__seal { width: 56px; height: 56px; }
+}

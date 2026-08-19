@@ -441,13 +441,39 @@
       .confirm__actions .btn { width: 100%; justify-content: center; }
       .nav__pill { padding: 0.55rem 1.25rem; gap: 1rem; }
     }
+
+    /* ── Phillip Noire, LLC emblem ── */
+    .nav__logo { display: inline-flex; align-items: center; gap: 0.6rem; }
+    .nav__logo-seal {
+      width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 6px 16px rgba(0,0,0,0.5);
+      transition: transform 600ms var(--ease-out-expo), box-shadow 600ms var(--ease-out-expo);
+    }
+    .nav__logo:hover .nav__logo-seal {
+      transform: rotate(-6deg) scale(1.06);
+      box-shadow: 0 0 0 1px rgba(185,28,28,0.55), 0 0 18px rgba(185,28,28,0.35);
+    }
+    .confirm__seal {
+      display: block;
+      width: 84px; height: 84px; margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      opacity: 0.9;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 14px 40px rgba(0,0,0,0.6);
+    }
+    @media (max-width: 540px) {
+      .nav__logo-seal { width: 26px; height: 26px; }
+      .confirm__seal { width: 68px; height: 68px; }
+    }
   </style>
 </head>
 <body>
 
   <nav class="nav">
     <div class="nav__pill">
-      <a href="index.html" class="nav__logo">P<span class="nav__logo-dot">.</span>Gilliam</a>
+      <a href="index.html" class="nav__logo" aria-label="Phillip Gilliam, home">
+        <img class="nav__logo-seal" src="images/phillip-noire-emblem-sm.webp" alt="" width="30" height="30" aria-hidden="true">
+        <span class="nav__logo-word">P<span class="nav__logo-dot">.</span>Gilliam</span>
+      </a>
       <a href="index.html" class="nav__back">
         <i class="ph-light ph-arrow-left"></i> Back to Site
       </a>
@@ -518,6 +544,8 @@
         </div>
 
         <div class="confirm__tagline">
+          <img class="confirm__seal" src="images/phillip-noire-emblem.webp"
+               alt="Phillip Noire, LLC emblem" width="84" height="84" loading="lazy" decoding="async">
           <blockquote>"Justice is optional. Power is invisible. Vengeance is never satisfied."</blockquote>
           <cite>
             <span class="confirm__tagline-line"></span>

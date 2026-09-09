@@ -24,7 +24,8 @@ Author site for Phillip Gilliam (Phillip Noire, LLC). Sell his books direct via 
 - Buy flow wired identically to the novels; Payment Link URL is a single constant to fill in.
 
 ## Constraints
-- Match the existing noir design system exactly (tokens in `styles.css :root`), reuse `.book-3d`, `.book-feature`, `.btn`, nav, footer, cart drawer.
+- **Palette (since 2026-09-09, Lawrence's call): the whole site takes its colours from the Lethal Black Understanding cover.** Gold `#FAB40A` is the accent (`--accent`, `--accent-hot #FFC63A`, `--accent-deep`, `--accent-rgb` for rgba tints), warm near-black inks and parchment bone tones from the artwork. Anything sitting on a gold surface uses `--on-accent` (dark) text. The old red/ink noir palette is kept as `body.theme-noir` in `styles.css`; add that class to `<body>` to restore it on any page. `confirmation.html` carries its own copy of the tokens in an inline `<style>`.
+- Reuse the design system as is: tokens in `styles.css :root`, `.book-3d`, `.book-feature`, `.btn`, nav, footer, cart drawer.
 - No background jazz autoplay on the nonfiction page.
 - Keep the site static; no bundler, no framework.
 - Never push to `main` from a session without Lawrence's go: it deploys live.
@@ -35,5 +36,5 @@ Author site for Phillip Gilliam (Phillip Noire, LLC). Sell his books direct via 
 
 ## Open questions (need Lawrence / Phillip)
 1. **Payment Link + price** for the new title: create in Phillip's Stripe (Payment Links → New → product "Lethal Black Understanding in America" → collect shipping → after payment redirect to `https://pgilliam.com/confirmation.html?book=lbu`), then paste the `buy.stripe.com/...` URL into `PRODUCTS.lbu.paymentLink` in `script.js`.
-2. **Real cover art.** The interior PDF has no cover; `images/lethal-black-understanding-cover.jpg` is an in-house typographic placeholder in the site's palette. Swap in the IngramSpark cover at 1200x1800 (2:3) when available.
+2. **Cover art.** Per Lawrence (2026-09-09), `images/lethal-black-understanding-cover.jpg` is page 1 of the IngramSpark interior PDF (gold title page with the cover artwork inset), rendered at 200 dpi via `pdftoppm` and fitted to 1200x1800. Replace with the separate IngramSpark cover file if one is ever supplied.
 3. **ISBN** not present in the interior PDF; add to the meta block and structured data when known.

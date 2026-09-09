@@ -7,7 +7,7 @@
   <title>Order Confirmed · Phillip Gilliam</title>
   <meta name="description" content="Thank you for your purchase. Your order has been confirmed.">
   <meta name="author" content="Phillip Gilliam">
-  <meta name="theme-color" content="#0a0a0b">
+  <meta name="theme-color" content="#0b0a08">
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Favicon -->
@@ -26,15 +26,17 @@
     *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --ink:           #0A0A0B;
-      --ink-2:         #111114;
-      --ink-3:         #16161B;
-      --bone:          #F2ECEA;
-      --bone-mid:      #BDB3B0;
-      --bone-low:      #6F6764;
-      --blood:         #B91C1C;
-      --blood-hot:     #DC2626;
-      --blood-glow:    rgba(185,28,28,0.35);
+      --ink:           #0B0A08;
+      --ink-2:         #14110D;
+      --ink-3:         #1A1612;
+      --bone:          #F3EAD6;
+      --bone-mid:      #CBB897;
+      --bone-low:      #8A7A5E;
+      --accent-rgb:    250,180,10;
+      --accent:        #FAB40A;
+      --accent-hot:    #FFC63A;
+      --accent-glow:   rgba(250,180,10,0.35);
+      --on-accent:     #1A1208;
       --line:          rgba(255,255,255,0.08);
       --line-strong:   rgba(255,255,255,0.14);
       --green:         #22c55e;
@@ -89,7 +91,7 @@
       color: var(--bone);
       white-space: nowrap;
     }
-    .nav__logo-dot { color: var(--blood); }
+    .nav__logo-dot { color: var(--accent); }
     .nav__back {
       padding: 0.55rem 1.25rem;
       font-size: 0.8125rem;
@@ -202,7 +204,7 @@
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
-      color: var(--blood-hot);
+      color: var(--accent-hot);
       margin-bottom: 1rem;
       text-align: left;
     }
@@ -237,7 +239,7 @@
       font-size: 0.6rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--blood-hot);
+      color: var(--accent-hot);
       margin-bottom: 0.2rem;
     }
     .confirm__order-name {
@@ -298,7 +300,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.2em;
-      color: var(--blood-hot);
+      color: var(--accent-hot);
       margin-bottom: 1rem;
     }
     .confirm__next-list {
@@ -348,13 +350,13 @@
                   box-shadow 500ms var(--ease-out-expo);
     }
     .btn--primary {
-      background: var(--blood);
-      color: var(--bone);
-      box-shadow: 0 8px 30px -8px var(--blood-glow);
+      background: var(--accent);
+      color: var(--on-accent);
+      box-shadow: 0 8px 30px -8px var(--accent-glow);
     }
     .btn--primary:hover {
-      background: var(--blood-hot);
-      box-shadow: 0 14px 40px -10px var(--blood-glow);
+      background: var(--accent-hot);
+      box-shadow: 0 14px 40px -10px var(--accent-glow);
     }
     .btn--ghost {
       background: transparent;
@@ -407,7 +409,7 @@
       display: inline-block;
       width: 32px;
       height: 1px;
-      background: var(--blood);
+      background: var(--accent);
     }
 
     @keyframes fadeUp {
@@ -451,7 +453,7 @@
     }
     .nav__logo:hover .nav__logo-seal {
       transform: rotate(-6deg) scale(1.06);
-      box-shadow: 0 0 0 1px rgba(185,28,28,0.55), 0 0 18px rgba(185,28,28,0.35);
+      box-shadow: 0 0 0 1px rgba(var(--accent-rgb),0.55), 0 0 18px rgba(var(--accent-rgb),0.35);
     }
     .confirm__seal {
       display: block;
@@ -530,7 +532,7 @@
             </li>
             <li>
               <i class="ph-light ph-chat-circle-text"></i>
-              Questions about your order? <a href="index.html#contact" style="color: var(--blood-hot); text-decoration: underline;">Contact Phillip directly.</a>
+              Questions about your order? <a href="index.html#contact" style="color: var(--accent-hot); text-decoration: underline;">Contact Phillip directly.</a>
             </li>
           </ul>
         </div>

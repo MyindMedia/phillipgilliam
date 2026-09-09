@@ -24,7 +24,8 @@ Author site for Phillip Gilliam (Phillip Noire, LLC). Sell his books direct via 
 - Buy flow wired identically to the novels; Payment Link URL is a single constant to fill in.
 
 ## Constraints
-- **Palette (since 2026-09-09, Lawrence's call): the whole site takes its colours from the Lethal Black Understanding cover.** Gold `#FAB40A` is the accent (`--accent`, `--accent-hot #FFC63A`, `--accent-deep`, `--accent-rgb` for rgba tints), warm near-black inks and parchment bone tones from the artwork. Anything sitting on a gold surface uses `--on-accent` (dark) text. The old red/ink noir palette is kept as `body.theme-noir` in `styles.css`; add that class to `<body>` to restore it on any page. `confirmation.html` carries its own copy of the tokens in an inline `<style>`.
+- **Palette is page-scoped (Lawrence, 2026-09-09).** Site default = the original noir (ink, bone, blood red) via tokens `--accent`, `--accent-hot`, `--accent-deep`, `--accent-rgb`, `--accent-glow`, `--on-accent*` in `styles.css :root`. The gold palette taken from the Lethal Black Understanding cover (`#FAB40A` accent, warm inks, parchment bone, dark `--on-accent` text on gold) lives in `body.theme-gold` and is applied ONLY on `lethal-black-understanding.html`. Never put `theme-gold` on the home page. `confirmation.html` carries its own noir copy of the tokens inline.
+- **Home page stays the two novels.** The nonfiction title is reached through the "More Books" nav dropdown (and the mobile-menu group), not a card in the Books section.
 - Reuse the design system as is: tokens in `styles.css :root`, `.book-3d`, `.book-feature`, `.btn`, nav, footer, cart drawer.
 - No background jazz autoplay on the nonfiction page.
 - Keep the site static; no bundler, no framework.

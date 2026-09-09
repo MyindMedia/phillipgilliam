@@ -344,6 +344,16 @@
       series: 'John Talion Mystery · Book Two',
       image: 'images/at-all-times-cover.png',
       paymentLink: 'https://buy.stripe.com/9B6cMZ1qf1ms4ARb54fQI00'
+    },
+    lbu: {
+      id: 'lbu',
+      name: 'Lethal Black Understanding in America',
+      series: 'Nonfiction · A Gathering of Information',
+      image: 'images/lethal-black-understanding-cover.jpg',
+      // TODO: paste the Stripe Payment Link for this title.
+      // Create it in the Phillip Noire, LLC Stripe dashboard (Payment Links → New),
+      // with "After payment" redirect: https://pgilliam.com/confirmation.html?book=lbu
+      paymentLink: ''
     }
   };
 
@@ -413,6 +423,7 @@
 
   // ── Render cart UI ──
   function renderCart() {
+    if (cartNote) cartNote.hidden = true;
     var totalCount = 0;
     cart.forEach(function (item) { totalCount += item.qty; });
 
@@ -492,9 +503,30 @@
   });
 
   // ── Checkout via Stripe Payment Links ──
+  var cartNote = document.getElementById('cartNote');
+  function showCartNote(html) {
+    if (!cartNote) return;
+    cartNote.innerHTML = html;
+    cartNote.hidden = false;
+  }
+
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', function () {
       if (cart.length === 0) return;
+
+      // A title whose Payment Link is not live yet: explain instead of failing silently.
+      var unavailable = cart.filter(function (item) {
+        var p = PRODUCTS[item.id];
+        return !(p && p.paymentLink);
+      });
+      if (unavailable.length) {
+        var names = unavailable.map(function (item) {
+          return PRODUCTS[item.id] ? PRODUCTS[item.id].name : item.id;
+        }).join(', ');
+        showCartNote('Online checkout for <strong>' + names + '</strong> is being set up. ' +
+          '<a href="index.html#contact">Contact Phillip to order a copy.</a>');
+        return;
+      }
 
       // If only one unique product in cart, go directly to its Payment Link
       if (cart.length === 1) {

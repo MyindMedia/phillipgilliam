@@ -64,7 +64,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="page-book">
+<body class="page-book theme-gold">
 
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -76,6 +76,19 @@
       </a>
       <div class="nav__links">
         <a href="index.html#books" class="nav__link">Books</a>
+        <div class="nav__more" id="navMore">
+          <button class="nav__link nav__more-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="navMoreMenu">More Books <i class="ph-light ph-caret-down"></i></button>
+          <div class="nav__more-menu" id="navMoreMenu">
+            <div class="nav__more-panel">
+              <span class="nav__more-label">Nonfiction</span>
+              <a class="nav__more-item" href="lethal-black-understanding.html" aria-current="page">
+                <img src="images/lethal-black-understanding-cover.jpg" alt="" width="40" height="60" loading="lazy">
+                <span><strong>Lethal Black Understanding in America</strong><small>New · A Gathering of Information</small></span>
+              </a>
+              <a class="nav__more-item nav__more-item--all" href="index.html#books">All books <i class="ph-light ph-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
         <a href="index.html#excerpt" class="nav__link">Excerpt</a>
         <a href="index.html#reviews" class="nav__link">Reviews</a>
         <a href="index.html#about" class="nav__link">About</a>
@@ -97,6 +110,10 @@
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu__inner">
       <a href="index.html#books" class="mobile-menu__link">Books</a>
+      <div class="mobile-menu__group">
+        <span class="mobile-menu__group-label">More Books</span>
+        <a href="lethal-black-understanding.html" class="mobile-menu__sub">Lethal Black Understanding in America</a>
+      </div>
       <a href="index.html#excerpt" class="mobile-menu__link">Excerpt</a>
       <a href="index.html#reviews" class="mobile-menu__link">Reviews</a>
       <a href="index.html#about" class="mobile-menu__link">About</a>

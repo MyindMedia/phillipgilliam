@@ -641,3 +641,25 @@
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 })();
+
+// ── MORE BOOKS DROPDOWN (nav) ─────────────────────────
+(function () {
+  var more = document.getElementById('navMore');
+  if (!more) return;
+  var btn = more.querySelector('.nav__more-btn');
+  if (!btn) return;
+  function setOpen(v) {
+    more.classList.toggle('open', v);
+    btn.setAttribute('aria-expanded', String(v));
+  }
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(!more.classList.contains('open'));
+  });
+  document.addEventListener('click', function (e) {
+    if (!more.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();

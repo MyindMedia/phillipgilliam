@@ -7,24 +7,23 @@
 
 :root {
   /* Palette */
-  /* Palette: taken from the Lethal Black Understanding cover
-     (gold #FAB40A ground, warm near-black and parchment from the artwork) */
-  --ink:           #0B0A08;
-  --ink-2:         #14110D;
-  --ink-3:         #1A1612;
-  --bone:          #F3EAD6;
-  --bone-mid:      #CBB897;
-  --bone-low:      #8A7A5E;
-  --accent-rgb:    250,180,10;
-  --accent:        #FAB40A;
-  --accent-hot:    #FFC63A;
-  --accent-deep:   #9A6B06;
-  --accent-glow:   rgba(250,180,10,0.35);
+  /* Palette: noir (ink black, bone, blood red). This is the site default. */
+  --ink:           #0A0A0B;
+  --ink-2:         #111114;
+  --ink-3:         #16161B;
+  --bone:          #F2ECEA;
+  --bone-mid:      #BDB3B0;
+  --bone-low:      #6F6764;
+  --accent-rgb:    185,28,28;
+  --accent:        #B91C1C;
+  --accent-hot:    #DC2626;
+  --accent-deep:   #7a1212;
+  --accent-glow:   rgba(185,28,28,0.35);
   /* text and chrome that sit ON an accent surface (buttons, badges, contact panel) */
-  --on-accent:       #1A1208;
-  --on-accent-muted: rgba(26,18,8,0.74);
-  --on-accent-soft:  rgba(0,0,0,0.10);
-  --on-accent-line:  rgba(0,0,0,0.22);
+  --on-accent:       #F2ECEA;
+  --on-accent-muted: rgba(242,236,234,0.8);
+  --on-accent-soft:  rgba(255,255,255,0.08);
+  --on-accent-line:  rgba(255,255,255,0.28);
   --line:          rgba(255,255,255,0.08);
   --line-strong:   rgba(255,255,255,0.14);
 
@@ -50,23 +49,25 @@
   --radius-pill: 100px;
 }
 
-/* Original noir palette. Add class="theme-noir" to <body> to restore it. */
-body.theme-noir {
-  --ink:           #0A0A0B;
-  --ink-2:         #111114;
-  --ink-3:         #16161B;
-  --bone:          #F2ECEA;
-  --bone-mid:      #BDB3B0;
-  --bone-low:      #6F6764;
-  --accent-rgb:    185,28,28;
-  --accent:        #B91C1C;
-  --accent-hot:    #DC2626;
-  --accent-deep:   #7a1212;
-  --accent-glow:   rgba(185,28,28,0.35);
-  --on-accent:       #F2ECEA;
-  --on-accent-muted: rgba(242,236,234,0.8);
-  --on-accent-soft:  rgba(255,255,255,0.08);
-  --on-accent-line:  rgba(255,255,255,0.22);
+/* Gold palette taken from the Lethal Black Understanding cover
+   (gold #FAB40A ground, warm near-black and parchment from the artwork).
+   Used ONLY on lethal-black-understanding.html via class="theme-gold" on <body>. */
+body.theme-gold {
+  --ink:           #0B0A08;
+  --ink-2:         #14110D;
+  --ink-3:         #1A1612;
+  --bone:          #F3EAD6;
+  --bone-mid:      #CBB897;
+  --bone-low:      #8A7A5E;
+  --accent-rgb:    250,180,10;
+  --accent:        #FAB40A;
+  --accent-hot:    #FFC63A;
+  --accent-deep:   #9A6B06;
+  --accent-glow:   rgba(250,180,10,0.35);
+  --on-accent:       #1A1208;
+  --on-accent-muted: rgba(26,18,8,0.74);
+  --on-accent-soft:  rgba(0,0,0,0.10);
+  --on-accent-line:  rgba(0,0,0,0.22);
 }
 
 html {
@@ -3052,3 +3053,137 @@ body.video-modal-open { overflow: hidden; }
 @media (max-width: 375px) {
   .hero__book-stack .book-3d--hero { --book-w: 176px; --book-d: 36px; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   MORE BOOKS (nav dropdown + mobile menu group)
+   ═══════════════════════════════════════════════════════ */
+.nav__more { position: relative; }
+.nav__more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: inherit;
+}
+.nav__more-btn i {
+  font-size: 0.85rem;
+  transition: transform 300ms var(--ease-out-expo);
+}
+.nav__more.open .nav__more-btn,
+.nav__more:hover .nav__more-btn {
+  color: var(--bone);
+  background: rgba(255,255,255,0.06);
+}
+.nav__more.open .nav__more-btn i,
+.nav__more:hover .nav__more-btn i { transform: rotate(180deg); }
+.nav__more-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 0.75rem;
+  display: none;
+  z-index: 50;
+}
+.nav__more.open .nav__more-menu,
+.nav__more:hover .nav__more-menu,
+.nav__more:focus-within .nav__more-menu { display: block; }
+.nav__more-panel {
+  min-width: 330px;
+  padding: 0.6rem;
+  background: rgba(11,10,8,0.92);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+}
+.nav__more-label {
+  display: block;
+  padding: 0.35rem 0.75rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-low);
+}
+.nav__more-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.75rem;
+  transition: background 300ms var(--ease-out-expo);
+}
+.nav__more-item:hover { background: rgba(255,255,255,0.06); }
+.nav__more-item img {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 2px 4px 4px 2px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+  flex-shrink: 0;
+}
+.nav__more-item strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--bone);
+}
+.nav__more-item small {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-hot);
+}
+.nav__more-item--all {
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone-mid);
+}
+.nav__more-item--all:hover { background: transparent; color: var(--bone); }
+
+.mobile-menu__group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 2rem 0.75rem;
+  opacity: 0;
+  transform: translateY(3rem);
+  transition: all 600ms var(--ease-out-expo) 200ms;
+}
+.mobile-menu.open .mobile-menu__group { opacity: 1; transform: translateY(0); }
+.mobile-menu__group-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-hot);
+}
+.mobile-menu__sub {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+  font-weight: 500;
+  color: var(--bone-mid);
+  text-align: center;
+  line-height: 1.25;
+  max-width: 22ch;
+}
+.mobile-menu__sub:hover { color: var(--bone); }

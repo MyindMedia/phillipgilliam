@@ -348,11 +348,21 @@
     lbu: {
       id: 'lbu',
       name: 'Lethal Black Understanding in America',
-      series: 'Nonfiction · A Gathering of Information',
+      series: 'Paperback · $18.99',
+      format: 'Paperback',
       image: 'images/lethal-black-understanding-cover.jpg',
-      // TODO: paste the Stripe Payment Link for this title.
-      // Create it in the Phillip Noire, LLC Stripe dashboard (Payment Links → New),
-      // with "After payment" redirect: https://pgilliam.com/confirmation.html?book=lbu
+      // Phillip Noire, LLC Stripe; after payment redirects to confirmation.html?book=lbu
+      paymentLink: ''
+    },
+    'lbu-ebook': {
+      id: 'lbu-ebook',
+      name: 'Lethal Black Understanding in America',
+      series: 'eBook · PDF + EPUB · $18.99',
+      format: 'eBook',
+      image: 'images/lethal-black-understanding-cover.jpg',
+      digital: true,
+      // Redirects to confirmation.html?book=lbu-ebook&session_id={CHECKOUT_SESSION_ID},
+      // where /api/ebook-download verifies the payment and hands out the files.
       paymentLink: ''
     }
   };
@@ -399,7 +409,7 @@
 
     var existing = cart.find(function (item) { return item.id === productId; });
     if (existing) {
-      existing.qty += 1;
+      if (!product.digital) existing.qty += 1;
     } else {
       cart.push({ id: productId, qty: 1 });
     }
@@ -417,6 +427,7 @@
   function updateQty(productId, delta) {
     var item = cart.find(function (i) { return i.id === productId; });
     if (!item) return;
+    if (PRODUCTS[productId] && PRODUCTS[productId].digital) return;
     item.qty = Math.max(1, item.qty + delta);
     renderCart();
   }
@@ -453,11 +464,13 @@
           '<div class="cart-item__info">' +
             '<p class="cart-item__series">' + product.series + '</p>' +
             '<p class="cart-item__name">' + product.name + '</p>' +
-            '<div class="cart-item__qty">' +
-              '<button class="cart-item__qty-btn" data-qty-action="dec" data-qty-id="' + item.id + '" type="button" aria-label="Decrease quantity">&minus;</button>' +
-              '<span class="cart-item__qty-num">' + item.qty + '</span>' +
-              '<button class="cart-item__qty-btn" data-qty-action="inc" data-qty-id="' + item.id + '" type="button" aria-label="Increase quantity">+</button>' +
-            '</div>' +
+            (product.digital
+              ? '<p class="cart-item__series">Instant download</p>'
+              : '<div class="cart-item__qty">' +
+                  '<button class="cart-item__qty-btn" data-qty-action="dec" data-qty-id="' + item.id + '" type="button" aria-label="Decrease quantity">&minus;</button>' +
+                  '<span class="cart-item__qty-num">' + item.qty + '</span>' +
+                  '<button class="cart-item__qty-btn" data-qty-action="inc" data-qty-id="' + item.id + '" type="button" aria-label="Increase quantity">+</button>' +
+                '</div>') +
           '</div>' +
           '<button class="cart-item__remove" data-remove-id="' + item.id + '" type="button" aria-label="Remove ' + product.name + '">' +
             '<i class="ph-light ph-trash"></i>' +
@@ -521,7 +534,8 @@
       });
       if (unavailable.length) {
         var names = unavailable.map(function (item) {
-          return PRODUCTS[item.id] ? PRODUCTS[item.id].name : item.id;
+          var p = PRODUCTS[item.id];
+          return p ? p.name + (p.format ? ' (' + p.format + ')' : '') : item.id;
         }).join(', ');
         showCartNote('Online checkout for <strong>' + names + '</strong> is being set up. ' +
           '<a href="index.html#contact">Contact Phillip to order a copy.</a>');
@@ -537,18 +551,14 @@
         }
       }
 
-      // Multiple products: open each Payment Link in sequence
-      // (Stripe Payment Links are per-product, so each opens separately)
-      cart.forEach(function (item, i) {
-        var product = PRODUCTS[item.id];
-        if (product && product.paymentLink) {
-          if (i === 0) {
-            window.location.href = product.paymentLink;
-          } else {
-            window.open(product.paymentLink, '_blank');
-          }
-        }
-      });
+      // Multiple products: Payment Links are per-product, and browsers block the extra
+      // tabs a script opens, so give each book its own checkout button instead.
+      showCartNote('Each book checks out separately with Stripe:' +
+        cart.map(function (item) {
+          var p = PRODUCTS[item.id];
+          return '<a class="cart-drawer__note-link" href="' + p.paymentLink + '">' +
+            'Checkout: ' + p.name + (p.format ? ' (' + p.format + ')' : '') + '</a>';
+        }).join(''));
     });
   }
 

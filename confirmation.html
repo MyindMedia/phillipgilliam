@@ -466,6 +466,41 @@
       .nav__logo-seal { width: 26px; height: 26px; }
       .confirm__seal { width: 68px; height: 68px; }
     }
+    /* ── eBook downloads ── */
+    .confirm__downloads {
+      background: var(--ink-3);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      animation: fadeUp 800ms 480ms var(--ease-out-expo) both;
+    }
+    .confirm__downloads-status { font-size: 0.9rem; color: var(--bone-mid); line-height: 1.55; }
+    .confirm__downloads-status a { color: var(--accent-hot); text-decoration: underline; }
+    .confirm__download {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.9rem 1rem;
+      margin-top: 0.75rem;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-md, 12px);
+      color: var(--bone);
+      text-decoration: none;
+      transition: border-color 300ms var(--ease-out-expo), background 300ms var(--ease-out-expo);
+    }
+    .confirm__download:hover { border-color: var(--accent-hot); background: rgba(var(--accent-rgb), 0.08); }
+    .confirm__download > i { font-size: 1.5rem; color: var(--accent-hot); }
+    .confirm__download-name { display: block; font-weight: 700; letter-spacing: 0.04em; }
+    .confirm__download-note { display: block; font-size: 0.8rem; color: var(--bone-low); margin-top: 0.15rem; }
+    .confirm__download-cta { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent-hot); }
+    .confirm__downloads-fine { font-size: 0.78rem; color: var(--bone-low); margin-top: 1rem; line-height: 1.5; }
+    @media (max-width: 540px) {
+      .confirm__download { grid-template-columns: auto 1fr; }
+      .confirm__download-cta { grid-column: 2; }
+    }
   </style>
 </head>
 <body>
@@ -504,6 +539,14 @@
           </div>
         </div>
 
+        <!-- EBOOK DOWNLOADS (shown for ?book=lbu-ebook, files released by /api/ebook-download) -->
+        <div class="confirm__downloads" id="downloads" hidden>
+          <p class="confirm__order-header">Your Downloads</p>
+          <div id="downloadsBody">
+            <p class="confirm__downloads-status">Checking your purchase&hellip;</p>
+          </div>
+        </div>
+
         <div class="confirm__details">
           <div class="confirm__detail-row">
             <span class="confirm__detail-label">Status</span>
@@ -526,7 +569,7 @@
               <i class="ph-light ph-envelope-simple"></i>
               Check your email for the order confirmation and receipt from Stripe.
             </li>
-            <li>
+            <li id="nextShipping">
               <i class="ph-light ph-package"></i>
               Your book will be shipped to the address you provided at checkout.
             </li>
@@ -582,9 +625,16 @@
       },
       lbu: {
         name: 'Lethal Black Understanding in America',
-        series: 'Nonfiction · A Gathering of Information',
+        series: 'Paperback · A Gathering of Information',
         image: 'images/lethal-black-understanding-cover.jpg',
         author: 'Phillip Gilliam'
+      },
+      'lbu-ebook': {
+        name: 'Lethal Black Understanding in America',
+        series: 'eBook · PDF + EPUB',
+        image: 'images/lethal-black-understanding-cover.jpg',
+        author: 'Phillip Gilliam',
+        digital: true
       }
     };
 
@@ -615,6 +665,64 @@
         '</div>';
     });
     container.innerHTML = html;
+
+    var book = BOOKS[bookParam];
+    if (book && book.digital) showDownloads(params.get('session_id'));
+
+    function showDownloads(sessionId) {
+      var panel = document.getElementById('downloads');
+      var body = document.getElementById('downloadsBody');
+      var shipping = document.getElementById('nextShipping');
+      panel.hidden = false;
+      if (shipping) {
+        shipping.innerHTML = '<i class="ph-light ph-download-simple"></i> ' +
+          'Download both files now and keep them. Bookmark this page to download again later.';
+      }
+      var contact = ' <a href="index.html#contact">Contact Phillip</a> and include the email you paid with.';
+      function status(msg) {
+        body.innerHTML = '<p class="confirm__downloads-status">' + msg + '</p>';
+      }
+      if (!sessionId) {
+        status('This page needs the link Stripe sent you to after payment.' + contact);
+        return;
+      }
+      var MESSAGES = {
+        not_paid: 'Your payment has not cleared yet. Refresh this page in a minute.',
+        expired: 'The download window for this purchase has closed.' + contact,
+        not_found: 'We could not find an eBook purchase for this link.' + contact
+      };
+      fetch('/api/ebook-download?session_id=' + encodeURIComponent(sessionId), { cache: 'no-store' })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (r) {
+          if (!r.ok || !r.data.files) {
+            status(MESSAGES[r.data.error] || ('Downloads are temporarily unavailable. Refresh in a moment.' + contact));
+            return;
+          }
+          var html = '';
+          r.data.files.forEach(function (f) {
+            var icon = f.format === 'PDF' ? 'ph-file-pdf' : 'ph-book-open-text';
+            html +=
+              '<a class="confirm__download" href="' + f.url + '" download="' + f.filename + '">' +
+                '<i class="ph-light ' + icon + '"></i>' +
+                '<span><span class="confirm__download-name">' + f.format + '</span>' +
+                '<span class="confirm__download-note">' + f.note + '</span></span>' +
+                '<span class="confirm__download-cta">Download</span>' +
+              '</a>';
+          });
+          var until = new Date(r.data.redownloadUntil);
+          html += '<p class="confirm__downloads-fine">Links on this page refresh each time you open it, through ' +
+            until.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' }) +
+            '. For personal use; please do not share the files.</p>';
+          body.innerHTML = html;
+        })
+        .catch(function () {
+          status('Could not reach the download service. Check your connection and refresh.');
+        });
+    }
   })();
   </script>
 

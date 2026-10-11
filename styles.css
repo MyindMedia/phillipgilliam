@@ -781,6 +781,7 @@ img { max-width: 100%; display: block; }
 }
 /* HERO BUY BUTTON (floating at base of each 3D book) */
 .hero-buy-btn {
+  text-decoration: none;
   position: absolute;
   bottom: -8px;
   left: 50%;
@@ -3023,6 +3024,7 @@ body.video-modal-open { overflow: hidden; }
 }
 .cart-drawer__note strong { color: var(--bone); }
 .cart-drawer__note a { color: var(--accent-hot); text-decoration: underline; }
+.cart-drawer__note a.cart-drawer__note-link { display: block; margin-top: 0.6rem; font-weight: 600; }
 
 @media (max-width: 968px) {
   .toc__grid, .toc__also { grid-template-columns: 1fr 1fr; }

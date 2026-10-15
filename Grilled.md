@@ -39,3 +39,10 @@ Author site for Phillip Gilliam (Phillip Noire, LLC). Sell his books direct via 
 1. **Payment Link + price** for the new title: create in Phillip's Stripe (Payment Links → New → product "Lethal Black Understanding in America" → collect shipping → after payment redirect to `https://pgilliam.com/confirmation.html?book=lbu`), then paste the `buy.stripe.com/...` URL into `PRODUCTS.lbu.paymentLink` in `script.js`.
 2. **Cover art.** Per Lawrence (2026-09-09), `images/lethal-black-understanding-cover.jpg` is page 1 of the IngramSpark interior PDF (gold title page with the cover artwork inset), rendered at 200 dpi via `pdftoppm` and fitted to 1200x1800. Replace with the separate IngramSpark cover file if one is ever supplied.
 3. **ISBN** not present in the interior PDF; add to the meta block and structured data when known.
+
+## 2026-10-15: paperback + eBook checkout (PR #2)
+- Both formats $18.99. eBook = one product delivering PDF + EPUB.
+- Stripe (Phillip Noire LLC, key `op://Security/Stripe Phillip G Book Site/API Key`, rk_live): paperback `plink_1UQsW48Z7Yd04uE65gvsd3Hi` (Ground Shipping $5, automatic tax, same countries as Black Leather Apron), eBook `plink_1UQsW58Z7Yd04uE66xDIABNi` (no shipping, tax code txcd_10302000 digital books).
+- eBook delivery: Stripe redirects to `confirmation.html?book=lbu-ebook&session_id=...`; `/api/ebook-download` checks a paid session from the eBook link, returns 1-hour presigned links to private R2 bucket `pgilliam-ebooks` (`lethal-black-understanding/v1/`), re-downloadable 30 days.
+- Netlify env: STRIPE_RESTRICTED_KEY, EBOOK_PAYMENT_LINK_ID, R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET.
+- Open: the novels have eBook Payment Links in Stripe (`fQI02` At All Times Ebook, `fQI03` Black Leather Apron Ebook) that the site does not use; both redirect to `?type=ebook&book=aat`, so the Black Leather Apron one names the wrong book and no files are delivered for either.

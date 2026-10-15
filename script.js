@@ -352,7 +352,7 @@
       format: 'Paperback',
       image: 'images/lethal-black-understanding-cover.jpg',
       // Phillip Noire, LLC Stripe; after payment redirects to confirmation.html?book=lbu
-      paymentLink: ''
+      paymentLink: 'https://buy.stripe.com/3cIdR31qfc16ffv8WWfQI04'
     },
     'lbu-ebook': {
       id: 'lbu-ebook',
@@ -363,7 +363,7 @@
       digital: true,
       // Redirects to confirmation.html?book=lbu-ebook&session_id={CHECKOUT_SESSION_ID},
       // where /api/ebook-download verifies the payment and hands out the files.
-      paymentLink: ''
+      paymentLink: 'https://buy.stripe.com/dRmdR38SH6GM3wN2yyfQI05'
     }
   };
 
